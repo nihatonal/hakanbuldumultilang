@@ -17,7 +17,7 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import NotReadyBlog from '../../../../assets/images/not-ready-blog-main-image.webp'
+import NotReadyBlog from '../../../../../assets/images/not-ready-blog-main-image.webp'
 import { client } from "@/sanity/lib/client";
 import SingleBlogContent from './SingleBlogContent';
 import { getMostViewedBlogs } from "@/sanity/queries/index";

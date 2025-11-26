@@ -11,7 +11,7 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import "dayjs/locale/tr";
 import NotReadyBlog from '../../../../assets/images/not-ready-blog-main-image.webp';
-import CategorySelectWrapper from "@/components/CategorySelectWrapper ";
+import CategorySelectWrapper from "@/components/CategorySelectWrapper";
 import { blockContentToText } from "@/lib/blockContentToText";
 
 const BLOG_QUERY = `*[_type=="blog"] | order(publishedAt desc){

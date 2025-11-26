@@ -1,4 +1,7 @@
+import createNextIntlPlugin from "next-intl/plugin";
 import type { NextConfig } from "next";
+
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   images: {
@@ -7,42 +10,48 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+
   async rewrites() {
     return [
+      // TR locale
+      { source: "/:locale/hakkinda", destination: "/:locale/about" },
+      { source: "/:locale/iletisim", destination: "/:locale/contact" },
+      { source: "/:locale/calisma-alanlari", destination: "/:locale/services" },
       {
-        source: "/hakkinda",
-        destination: "/about",
+        source: "/:locale/calisma-alanlari/:slug",
+        destination: "/:locale/services/:slug",
       },
       {
-        source: "/iletisim",
-        destination: "/contact",
+        source: "/:locale/gizlilik-politikasi",
+        destination: "/:locale/privacy",
       },
       {
-        source: "/calisma-alanlari",
-        destination: "/services",
+        source: "/:locale/kullanim-sartlari",
+        destination: "/:locale/termsOfUse",
       },
+      { source: "/:locale/cerez-politikasi", destination: "/:locale/cookies" },
       {
-        source: "/calisma-alanlari/:slug",
-        destination: "/services/:slug",
+        source: "/:locale/telif-ve-marka-haklari",
+        destination: "/:locale/rightsOfContent",
       },
+
+      // EN locale
+      { source: "/:locale/about-us", destination: "/:locale/about" },
+      { source: "/:locale/contact", destination: "/:locale/contact" },
+      { source: "/:locale/services", destination: "/:locale/services" },
       {
-        source: "/gizlilik-politikasi",
-        destination: "/privacy",
+        source: "/:locale/services/:slug",
+        destination: "/:locale/services/:slug",
       },
+      { source: "/:locale/privacy-policy", destination: "/:locale/privacy" },
+      { source: "/:locale/terms-of-use", destination: "/:locale/termsOfUse" },
+      { source: "/:locale/cookies-policy", destination: "/:locale/cookies" },
       {
-        source: "/kullanim-sartlari",
-        destination: "/termsOfUse",
-      },
-      {
-        source: "/cerez-politikasi",
-        destination: "/cookies",
-      },
-      {
-        source: "/telif-ve-marka-haklari",
-        destination: "/rightsOfContent",
+        source: "/:locale/copyrights",
+        destination: "/:locale/rightsOfContent",
       },
     ];
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -6,8 +6,9 @@ import { Card } from './ui/card'
 import { Star } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { containerStagger, fadeUp } from '@/lib/animations'
-
+import { useTranslations } from 'next-intl';
 const Testimonials = () => {
+    const t = useTranslations('home.testimonials');
     const testimonials = [
         {
             name: 'Ayşe Demir',
@@ -45,7 +46,7 @@ const Testimonials = () => {
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">
-                        Danışan Yorumları
+                        {t("title")}
                     </h2>
 
                 </motion.div>

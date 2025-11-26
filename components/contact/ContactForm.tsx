@@ -10,7 +10,7 @@ import { Send, Shield, Loader2 } from 'lucide-react'
 import { Button } from '../ui/button'
 import { motion } from 'framer-motion'
 import { fadeUp, containerStagger } from '@/lib/animations'
-import CategorySelectWrapper from '../CategorySelectWrapper '
+import CategorySelectWrapper from '../CategorySelectWrapper'
 
 
 interface ContactFormProps {

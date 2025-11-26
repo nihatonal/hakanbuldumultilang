@@ -1,5 +1,5 @@
 'use client';
-
+import { useTranslations } from 'next-intl';
 import { staticsData } from '@/constants/data';
 import React from 'react';
 import Container from './Container';
@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
 const HomeStatistics = () => {
+    const t = useTranslations('home.stats');
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.3, // Yüzde kaç görünürse tetiklensin
@@ -37,7 +38,7 @@ const HomeStatistics = () => {
                                     )}
                                     {stat.type === "percentage" ? "%" : "+"}
                                 </div>
-                                <div className="text-white/80">{stat.label}</div>
+                                <div className="text-white/80">{t(stat.label)}</div>
                             </motion.div>
                         ))}
                     </div>

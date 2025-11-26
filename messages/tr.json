@@ -1,0 +1,98 @@
+{
+  "common": {
+    "nav": {
+      "home": "Anasayfa",
+      "about": "Hakkında",
+      "services": "Çalışma Alanları",
+      "blog": "Blog",
+      "contact": "İletişim"
+    },
+    "consultation": {
+      "path": "/iletisim",
+      "label": "Ücretsiz Danışmanlık"
+    },
+    "footer": {
+      "title": "Hakan Buldu",
+      "subtitle": "Hukuki konularda doğru bilgiye ulaşmanız için buradayız. Her adımda sizi bilgilendirmek ve süreci birlikte anlamak önceliğimizdir.",
+      "quickLinks": "Hızlı Linkler",
+      "contact": "İletişim",
+      "copyrights": "© 2025 Hakan Buldu. Tüm hakları saklıdır.",
+      "policy": {
+        "path": "/gizlilik-politikasi",
+        "label": "Gizlilik Politikası"
+      },
+      "terms": {
+        "path": "/kullanim-sartlari",
+        "label": "Kullanım Şartları"
+      },
+      "cookies": {
+        "path": "/cerez-politikasi",
+        "label": "Çerez Politikası"
+      },
+      "rights": {
+        "path": "/telif-ve-marka-haklari",
+        "label": "Telif & Marka Hakları"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Haklarınızın etkin ve güvenli bir şekilde korunması için stratejik hukuki rehberlik",
+      "subtitle": "Hukuki süreçlerde doğru bilgiye ulaşmanızı ve bilinçli kararlar verebilmenizi sağlamak için tarafsız, güvenilir ve yol gösterici bir yaklaşım sunuyorum.",
+      "badge": "Profesyonel Yaklaşım, Net Sonuçlar",
+      "cta": {
+        "path": "/iletisim",
+        "label": "Sorunuzu Sorun"
+      }
+    },
+    "stats": {
+      "experience": "Yıl Deneyim",
+      "people": "Danışılan Kişi",
+      "articles": "Hukuki Makale",
+      "session": "Bilgilendirme Oturumu"
+    },
+    "services": {
+      "title": "Çalışma Alanlarım",
+      "subtitle": "Deneyimle şekillenen analiz ve akademik derinlikle birleşen profesyonel uygulama; hukukla güclenen, sürdürülebilir ve güvenilir sonuçlar.",
+      "cta": {
+        "path": "/calisma-alanlari",
+        "label": "Tüm Faaliyet Alanları"
+      },
+      "ctaCard": "Detayları Görüntüle"
+    },
+    "about": {
+      "title": "Hakan Buldu",
+      "subtitle": "15 yılı aşkın tecrübemle, hukuki süreçler ve haklar konusunda doğru, anlaşılır ve güvenilir bilgilendirme sunuyorum. Dokuz Eylül Üniversitesi Hukuk Fakültesi mezunu olarak, ceza, medeni ve tazminat alanlarında yönlendirici danışmanlık sağlıyorum.",
+      "badge": "Hukuki Bilgilendirme ve Rehberlik",
+      "items": [
+        "Dokuz Eylül Üniversitesi Hukuk Fakültesi",
+        "15+ Yıl Hukuk Alanında Deneyim",
+        "500+ Bilgilendirme ve Rehberlik Görüşmesi"
+      ],
+      "cta": {
+        "path": "/hakkinda",
+        "label": "Daha Fazla Bilgi"
+      }
+    },
+    "testimonials": {
+      "title": "Danışan Yorumları"
+    },
+    "cta": {
+      "title": "Hukuki Konularda Bilgiye mi İhtiyacınız Var?",
+      "subtitle": "Farklı hukuk alanlarına dair merak ettiklerinizi öğrenmek ve süreci daha net anlamak için bizimle iletişime geçin. Size güvenilir ve anlaşılır bilgi sunuyoruz.",
+      "cta": {
+        "cta1": {
+          "label": "Hemen Arayın"
+        },
+        "cta2": {
+          "path": "/iletisim",
+          "label": "Sorunuzu Gönderin"
+        }
+      }
+    },
+    "blogs": {
+      "title": "Popüler Yazılar",
+      "subtitle": "En güncel ve ilgi çekici yazılarımı burada bulabilirsiniz."
+    }
+  }
+}

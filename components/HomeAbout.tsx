@@ -1,5 +1,5 @@
 'use client'
-
+import { useTranslations } from 'next-intl';
 import React from 'react'
 import { Badge } from './ui/badge'
 import { CheckCircle, Award } from 'lucide-react'
@@ -11,9 +11,9 @@ import Container from './Container'
 import { motion } from 'framer-motion'
 import { fadeLeft, fadeRight } from '@/lib/animations'
 
-
-
 const HomeAbout = () => {
+    const t = useTranslations('home.about');
+    const items: string[] = t.raw('items');
     return (
         <section className="section-padding bg-white">
             <Container>
@@ -26,24 +26,17 @@ const HomeAbout = () => {
                         viewport={{ once: true }}
                     >
                         <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-                            Hukuki Bilgilendirme ve Rehberlik
+                            {t("badge")}
                         </Badge>
                         <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-6">
-                            Hakan Buldu
+                            {t("title")}
                         </h2>
                         <p className="text-lg text-muted-foreground mb-6">
-                            15 yılı aşkın tecrübemle, hukuki süreçler ve haklar konusunda doğru,
-                            anlaşılır ve güvenilir bilgilendirme sunuyorum. Dokuz Eylül Üniversitesi
-                            Hukuk Fakültesi mezunu olarak, ceza, medeni ve tazminat alanlarında
-                            yönlendirici danışmanlık sağlıyorum.
+                            {t("subtitle")}
                         </p>
 
                         <div className="space-y-3 mb-8 text-primary">
-                            {[
-                                'Dokuz Eylül Üniversitesi Hukuk Fakültesi',
-                                '15+ Yıl Hukuk Alanında Deneyim',
-                                '500+ Bilgilendirme ve Rehberlik Görüşmesi'
-                            ].map((item, idx) => (
+                            {items.map((item, idx) => (
                                 <div key={idx} className="flex items-center">
                                     <CheckCircle className="h-5 w-5 text-accent mr-3" />
                                     <span>{item}</span>

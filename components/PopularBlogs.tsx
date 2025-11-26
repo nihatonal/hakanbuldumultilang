@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from 'next-intl';
 import useSWR from 'swr';
 import { client } from '@/sanity/lib/client';
 import React, { useEffect } from "react";
@@ -55,7 +56,7 @@ interface BlogPageProps {
 const fetcher = (query: string) => client.fetch(query);
 
 const PopularBlogs: React.FC<BlogPageProps> = ({ mostViewed: initialMostViewed }) => {
-
+    const t = useTranslations("home.blogs")
     // 🔁 En çok okunanlar
     const { data: mostViewed, mutate: mutateMostViewed } = useSWR(MOST_VIEWED_QUERY, fetcher, {
         fallbackData: initialMostViewed,
@@ -87,13 +88,13 @@ const PopularBlogs: React.FC<BlogPageProps> = ({ mostViewed: initialMostViewed }
                         variants={fadeUp}
                         className="font-display text-4xl md:text-5xl font-bold text-primary mb-4"
                     >
-                        Popüler Yazılar
+                        {t("title")}
                     </motion.h2>
                     <motion.p
                         variants={fadeUp}
                         className="text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
-                        En güncel ve ilgi çekici yazılarımı burada bulabilirsiniz.
+                        {t("subtitle")}
                     </motion.p>
                 </motion.div>
 

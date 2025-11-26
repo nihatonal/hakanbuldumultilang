@@ -1,5 +1,5 @@
 'use client'
-
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Card } from '@/components/ui/card'
@@ -11,8 +11,9 @@ import { containerStagger, fadeUp } from '@/lib/animations'
 import { practicesData } from '@/constants/practiceAreas'
 
 const HomeServices = () => {
-
-
+    const locale = useLocale();
+    const t = useTranslations('home.services');
+    const data = practicesData[locale];
 
     return (
         <section className="section-padding bg-secondary/100">
@@ -26,10 +27,10 @@ const HomeServices = () => {
                     transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">
-                        Çalışma Alanlarım
+                        {t("title")}
                     </h2>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Deneyimle şekillenen analiz ve akademik derinlikle birleşen profesyonel uygulama; hukukla güclenen, sürdürülebilir ve güvenilir sonuçlar.
+                        {t("subtitle")}
                     </p>
                 </motion.div>
 
@@ -41,10 +42,10 @@ const HomeServices = () => {
                     whileInView="show"
                     viewport={{ once: true }}
                 >
-                    {practicesData.slice(0, 3).map((area, index) => (
+                    {data.slice(0, 3).map((area, index) => (
                         <motion.div key={index} variants={fadeUp}>
                             <Card className="card-elegant group hover:shadow-accent/20 cursor-pointer">
-                                <Link href={`/calisma-alanlari/${area.slug}`} className="block">
+                                <Link href={`/${locale === "en" ? "services" : "calisma-alanlari"}/${area.slug}`} className="block">
                                     <div className="flex items-center mb-4">
                                         <div className="p-3 bg-accent/10 rounded-lg mr-4 group-hover:bg-accent/20 transition-colors">
                                             <area.icon className="h-6 w-6 text-accent" />
@@ -55,7 +56,7 @@ const HomeServices = () => {
                                     </div>
                                     <p className="text-muted-foreground mb-4 line-clamp-3">{area.description}</p>
                                     <div className="flex items-center text-accent font-medium group-hover:text-accent-dark transition-colors">
-                                        Detayları Görüntüle
+                                        {t("ctaCard")}
                                         <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </Link>
@@ -72,7 +73,7 @@ const HomeServices = () => {
                     viewport={{ once: true }}
                 >
                     <Button asChild size="lg" className="btn-primary">
-                        <Link href="/calisma-alanlari">Tüm Faaliyet Alanları</Link>
+                        <Link href={t("cta.path")}>{t("cta.label")}</Link>
                     </Button>
                 </motion.div>
             </Container>

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useLocale } from 'next-intl';
 import { Badge } from '../ui/badge';
 import { Card } from '../ui/card';
 import {
@@ -13,6 +14,8 @@ import { fadeUp, containerStagger } from '@/lib/animations';
 import Link from '@/node_modules/next/link';
 import { practicesData } from '@/constants/practiceAreas';
 const PracticeAreas = () => {
+    const locale = useLocale();
+    const data = practicesData[locale];
     return (
         <section className="section-padding">
             <Container>
@@ -25,7 +28,7 @@ const PracticeAreas = () => {
                 >
                     <div
                         className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {practicesData.map((area, index) => (
+                        {data.map((area, index) => (
                             <motion.div key={index} variants={fadeUp}
                                 initial="hidden"
                                 whileInView="show"

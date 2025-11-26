@@ -1,5 +1,5 @@
 'use client'
-
+import { useTranslations } from 'next-intl';
 import Link from 'next/link'
 import React from 'react'
 import { Badge } from './ui/badge'
@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import { containerStagger, fadeUp } from '@/lib/animations'
 
 const HomeHero = () => {
+    const t = useTranslations('home.hero');
     return (
         <section className="relative h-screen flex items-center justify-center text-white px-2 md:px-0">
             {/* Arka Plan */}
@@ -38,19 +39,21 @@ const HomeHero = () => {
             >
                 <motion.div variants={fadeUp}>
                     <Badge className="mb-4 p-2 px-4 bg-accent text-accent-foreground hover:bg-accent">
-                        Profesyonel Yaklaşım, Net Sonuçlar
+
+                        {t('badge')}
                     </Badge>
                 </motion.div>
 
                 <motion.div variants={fadeUp}>
                     <h1 className="font-display text-4xl md:text-7xl font-bold mb-6">
-                        Doğru Stratejiyle Haklarınızı Koruyun
+                        {t('title')}
                     </h1>
                 </motion.div>
 
                 <motion.div variants={fadeUp}>
                     <p className="text-lg md:text-2xl mb-8 max-w-3xl mx-auto text-white/90">
-                        Hukuki süreçlerde doğru bilgiye ulaşmanızı ve bilinçli kararlar verebilmenizi sağlamak için tarafsız, güvenilir ve yol gösterici bir yaklaşım sunuyorum.                    </p>
+                        {t('subtitle')}
+                    </p>
                 </motion.div>
 
                 <motion.div
@@ -59,8 +62,8 @@ const HomeHero = () => {
                 >
                     <motion.div variants={fadeUp}>
                         <Button asChild size="lg" className="btn-hero">
-                            <Link href="/iletisim">
-                                Sorunuzu Sorun
+                            <Link href={t("cta.path")}>
+                                {t('cta.label')}
                                 <ArrowRight className="ml-2 h-5 w-5" />
                             </Link>
                         </Button>

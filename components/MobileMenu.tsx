@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from './ui/button';
@@ -12,7 +13,9 @@ export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
-
+    const locale = useLocale();
+    const t = useTranslations("common")
+    const menuItems = headerData[locale];
     return (
         <>
             {/* Hamburger Button */}
@@ -60,7 +63,7 @@ export default function MobileMenu() {
                             <div className='absolute h-screen w-full top-0 right-0 bg-black/70 z-60'></div>
                             <div className='relative z-70 w-64 h-screen bg-background p-6 gap-4'>
                                 <nav className='flex flex-col p-6 gap-4'>
-                                    {headerData.map((item) => (
+                                    {menuItems.map((item) => (
                                         <Link
                                             key={item.path}
                                             href={item.path}
@@ -75,7 +78,7 @@ export default function MobileMenu() {
                                     ))}
                                 </nav>
                                 <Button asChild className="btn-hero">
-                                    <Link href="/iletisim">Ücretsiz Danışmanlık</Link>
+                                    <Link href={t("consultation.path")}>{t("consultation.label")}</Link>
                                 </Button>
                                 {/* Alt İletişim Bilgileri */}
                                 <div className="border-t border-border pt-6 mt-6">
@@ -89,7 +92,7 @@ export default function MobileMenu() {
                                                 href="tel:05305610034"
                                                 className="hover:text-accent transition-colors"
                                             >
-                                              +90 530 561 00 34
+                                                +90 530 561 00 34
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-3">
@@ -98,7 +101,7 @@ export default function MobileMenu() {
                                                 href="mailto:info@hakanbuldu.com"
                                                 className="hover:text-accent transition-colors"
                                             >
-                                               info@hakanbuldu.com
+                                                info@hakanbuldu.com
                                             </a>
                                         </div>
                                         <div className="flex items-center gap-3">

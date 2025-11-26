@@ -1,37 +1,26 @@
-export const headerData = [
-  { path: "/", label: "Ana Sayfa" },
-  { path: "/hakkinda", label: "Hakkında" },
-  { path: "/calisma-alanlari", label: "Çalışma Alanları" },
-  { path: "/blog", label: "Blog" },
-  { path: "/iletisim", label: "İletişim" },
-];
-export const quickLinksData = [
-  { title: "About us", href: "/about" },
-  { title: "Contact us", href: "/contact" },
-  { title: "Terms & Conditions", href: "/terms" },
-  { title: "Privacy Policy", href: "/privacy" },
-  { title: "FAQs", href: "/faqs" },
-  { title: "Help", href: "/help" },
-];
-export const categoriesData = [
-  { title: "Mobiles", href: "mobiles" },
-  { title: "Appliances", href: "appliances" },
-  { title: "Smartphones", href: "smartphones" },
-  { title: "Air Conditioners", href: "air-conditioners" },
-  { title: "Washing Machine", href: "washing-machine" },
-  { title: "Kitchen Appliances", href: "kitchen-appliances" },
-  { title: "gadget accessories", href: "gadget-accessories" },
-];
-export const productType = [
-  { title: "Gadget", value: "gadget" },
-  { title: "Appliances", value: "appliances" },
-  { title: "Refrigerators", value: "refrigerators" },
-  { title: "Others", value: "others" },
-];
+type MenuItem = { path: string; label: string };
+type HeaderData = { [locale: string]: MenuItem[] };
+
+export const headerData: HeaderData = {
+  tr: [
+    { path: "/", label: "Ana Sayfa" },
+    { path: "/hakkinda", label: "Hakkında" },
+    { path: "/calisma-alanlari", label: "Çalışma Alanları" },
+    { path: "/blog", label: "Blog" },
+    { path: "/iletisim", label: "İletişim" },
+  ],
+  en: [
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/services", label: "Services" },
+    { path: "/blog", label: "Blog" },
+    { path: "/contact", label: "Contact" },
+  ],
+};
 
 export const staticsData = [
-  { label: "Yıl Deneyim", value: 15, type: "number" },
-  { label: "Danışılan Kişi", value: 500, type: "number" },
-  { label: "Hukuki Makale", value: 50, type: "number" },
-  { label: "Bilgilendirme Oturumu", value: 300, type: "number" },
+  { label: "experience", value: 15, type: "number" },
+  { label: "people", value: 500, type: "number" },
+  { label: "articles", value: 50, type: "number" },
+  { label: "session", value: 300, type: "number" },
 ];

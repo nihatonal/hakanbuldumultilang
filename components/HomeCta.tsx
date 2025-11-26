@@ -1,5 +1,5 @@
 'use client'
-
+import { useTranslations } from 'next-intl';
 import Link from 'next/link'
 import React from 'react'
 import Container from './Container'
@@ -11,6 +11,7 @@ import { fadeUp } from '@/lib/animations'
 
 
 const HomeCta = () => {
+    const t = useTranslations("home.cta")
     return (
         <section className="section-padding bg-gradient-to-r from-primary to-primary-light text-white">
             <Container className="text-center">
@@ -22,11 +23,10 @@ const HomeCta = () => {
                     viewport={{ once: true }}
                 >
                     <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-                        Hukuki Konularda Bilgiye mi İhtiyacınız Var?
+                        {t("title")}
                     </h2>
                     <p className="text-xl mb-8 max-w-3xl mx-auto text-white/90">
-                        Farklı hukuk alanlarına dair merak ettiklerinizi öğrenmek ve süreci daha net
-                        anlamak için bizimle iletişime geçin. Size güvenilir ve anlaşılır bilgi sunuyoruz.
+                        {t("subtitle")}
                     </p>
                 </motion.div>
 
@@ -46,7 +46,7 @@ const HomeCta = () => {
                         >
                             <a href="tel:+905305610034" className="flex items-center text-primary">
                                 <Phone className="mr-2 h-5 w-5" />
-                                Hemen Arayın
+                                {t("cta.cta1.label")}
                             </a>
                         </Button>
                     </motion.div>
@@ -58,7 +58,7 @@ const HomeCta = () => {
                             size="lg"
                             className="border-white text-white bg-transparent hover:bg-white hover:text-primary"
                         >
-                            <Link href="/iletisim">Sorunuzu Gönderin</Link>
+                            <Link href={t("cta.cta2.path")}>{t("cta.cta2.label")}</Link>
                         </Button>
                     </motion.div>
                 </motion.div>

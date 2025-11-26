@@ -13,18 +13,18 @@ export async function POST(req: NextRequest) {
       legalArea?: string;
     };
 
-    // Nodemailer transport
+    // Nodemailer Transport
     const transporter = nodemailer.createTransport({
       host: "smtp.zoho.eu",
       port: 465,
       secure: true, // SSL
       auth: {
-        user: "info@hakanbuldu.com", // Zoho mail adresin
-        pass: process.env.ZOHO_APP_PASSWORD, // App Password
+        user: "info@hakanbuldu.com",
+        pass: process.env.ZOHO_APP_PASSWORD,
       },
     });
 
-    // E-posta içeriği
+    // E-Posta İçeriği
     const emailContent = `
 Ad Soyad: ${name}
 Email: ${email}
@@ -35,24 +35,26 @@ Mesaj:
 ${message}
 `;
 
-    // E-posta gönderimi
+    // Gönder
     await transporter.sendMail({
-      from: `"Web Form" <info@hakanbuldu.com>`, // Zoho mail adresi
-      replyTo: email, // Kullanıcı e-posta adresi
-      to: "info@hakanbuldu.com", // Alıcı
+      from: `"Web Form" <info@hakanbuldu.com>`,
+      replyTo: email,
+      to: "info@hakanbuldu.com",
       subject: subject ? `Web Form: ${subject}` : "Web Form Mesajı",
       text: emailContent,
-      html: `<p><strong>Ad Soyad:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Telefon:</strong> ${phone || "-"}</p>
-      <p><strong>Konu:</strong> ${subject || "-"}</p>
-      <p><strong>Hukuki Alan:</strong> ${legalArea || "-"}</p>
-      <p><strong>Mesaj:</strong><br/>${message}</p>`,
+      html: `
+        <p><strong>Ad Soyad:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Telefon:</strong> ${phone || "-"}</p>
+        <p><strong>Konu:</strong> ${subject || "-"}</p>
+        <p><strong>Hukuki Alan:</strong> ${legalArea || "-"}</p>
+        <p><strong>Mesaj:</strong><br/>${message}</p>
+      `,
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error("Mail gönderim hatası:", err);
     return NextResponse.json({ error: "Email gönderilemedi" }, { status: 500 });
   }
 }

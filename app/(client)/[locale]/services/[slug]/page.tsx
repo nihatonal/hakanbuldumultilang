@@ -1,14 +1,16 @@
 import { notFound } from 'next/navigation';
+import { getLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { practicesData } from '@/constants/practiceAreas';
 import ServiceDetails from '@/components/ServiceDetails';
 
-type Props = { params: Promise<{ slug: string; }>; };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 const siteUrl = 'https://www.hakanbuldu.com';
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
-    const area = practicesData.find((item) => item.slug === slug);
+    const { locale, slug } = await params;
+    const data = practicesData[locale as keyof typeof practicesData];
+    const area = data.find((item) => item.slug === slug);
 
     if (!area) {
         return {
@@ -45,8 +47,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServicePage({ params }: Props) {
-    const { slug } =await params;
-    const area = practicesData.find((item) => item.slug === slug);
+    const { locale, slug } = await params;
+    const data = practicesData[locale as keyof typeof practicesData];
+    const area = data.find((item) => item.slug === slug);
 
     if (!area) {
         return notFound();
@@ -69,6 +72,11 @@ export default async function ServicePage({ params }: Props) {
 
 }
 
-export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
-    return practicesData.map((area) => ({ slug: area.slug }));
+export async function generateStaticParams() {
+    return Object.keys(practicesData).flatMap((locale) =>
+        practicesData[locale as keyof typeof practicesData].map((area) => ({
+            locale,
+            slug: area.slug,
+        }))
+    );
 }

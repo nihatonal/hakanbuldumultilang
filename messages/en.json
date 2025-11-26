@@ -1,0 +1,94 @@
+{
+  "common": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "services": "Services",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "footer": {
+      "title": "Hakan Buldu",
+      "subtitle": "We are here to provide accurate legal information. Our priority is to guide you and make the process clear at every step.",
+      "quickLinks": "Quick Links",
+      "contact": "Contact",
+      "copyrights": "© 2025 Hakan Buldu. All rights reserved.",
+      "policy": {
+        "path": "/privacy",
+        "label": "Privacy Policy"
+      },
+      "terms": {
+        "path": "/terms-of-use",
+        "label": "Terms of Use"
+      },
+      "cookies": {
+        "path": "/cookies",
+        "label": "Cookies Policy"
+      },
+      "rights": {
+        "path": "/rights-of-content",
+        "label": "Copyright & Trademark Rights"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Strategic legal guidance to protect your rights effectively and securely",
+      "subtitle": "I provide an impartial, reliable, and guiding approach to help you access accurate legal information and make informed decisions.",
+      "badge": "Professional Approach, Clear Results",
+      "cta": {
+        "path": "/contact",
+        "label": "Ask Your Question"
+      }
+    },
+    "stats": {
+      "experience": "Years of Experience",
+      "people": "Clients Served",
+      "articles": "Legal Articles",
+      "session": "Consultation Sessions"
+    },
+    "services": {
+      "title": "My Practice Areas",
+      "subtitle": "Professional practice shaped by experience and combined with analytical and academic depth; strengthened by law, sustainable and reliable.",
+      "cta": {
+        "path": "/services",
+        "label": "All Practice Areas"
+      },
+      "ctaCard": "View Details"
+    },
+    "about": {
+      "title": "Hakan Buldu",
+      "subtitle": "With over 15 years of experience, I provide accurate, clear, and reliable legal guidance. Graduated from Dokuz Eylül University Faculty of Law, I offer advisory services in criminal, civil, and compensation law.",
+      "badge": "Legal Guidance and Advisory",
+      "items": [
+        "Dokuz Eylül University Faculty of Law",
+        "15+ Years of Legal Experience",
+        "500+ Consultations and Guidance Sessions"
+      ],
+      "cta": {
+        "path": "/about",
+        "label": "Learn More"
+      }
+    },
+    "testimonials": {
+      "title": "Client Testimonials"
+    },
+    "cta": {
+      "title": "Need Legal Advice?",
+      "subtitle": "Reach out to learn more about various legal areas and understand the process better. We provide reliable and clear information.",
+      "cta": {
+        "cta1": {
+          "label": "Call Now"
+        },
+        "cta2": {
+          "path": "/contact",
+          "label": "Send Your Question"
+        }
+      }
+    },
+    "blogs": {
+      "title": "Popular Articles",
+      "subtitle": "Find the most recent and interesting articles here."
+    }
+  }
+}

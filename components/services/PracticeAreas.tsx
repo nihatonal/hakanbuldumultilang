@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';
 import Link from '@/node_modules/next/link';
 import { practicesData } from '@/constants/practiceAreas';
+import IconMapper from '../IconMapper';
 const PracticeAreas = () => {
     const locale = useLocale();
     const data = practicesData[locale];
@@ -37,7 +38,7 @@ const PracticeAreas = () => {
                                 <Card className="card-elegant relative hover:shadow-accent/20 h-full">
                                     {/* İKON - SOL ÜST KÖŞEDE */}
                                     <div className="absolute top-4 right-4 p-2.5 bg-accent/10 rounded-md z-10">
-                                        <area.icon className="h-8 w-8 text-accent" />
+                                        <IconMapper name={area.icon} size={32} className="text-accent" />
                                     </div>
 
                                     {/* ANA İÇERİK */}

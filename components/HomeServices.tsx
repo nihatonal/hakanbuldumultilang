@@ -9,7 +9,7 @@ import Container from './Container'
 import { motion } from 'framer-motion'
 import { containerStagger, fadeUp } from '@/lib/animations'
 import { practicesData } from '@/constants/practiceAreas'
-
+import IconMapper from "@/components/IconMapper";
 const HomeServices = () => {
     const locale = useLocale();
     const t = useTranslations('home.services');
@@ -48,7 +48,7 @@ const HomeServices = () => {
                                 <Link href={`/${locale === "en" ? "services" : "calisma-alanlari"}/${area.slug}`} className="block">
                                     <div className="flex items-center mb-4">
                                         <div className="p-3 bg-accent/10 rounded-lg mr-4 group-hover:bg-accent/20 transition-colors">
-                                            <area.icon className="h-6 w-6 text-accent" />
+                                            <IconMapper name={area.icon} size={32} className="text-accent" />
                                         </div>
                                         <h3 className="font-display text-xl font-semibold text-primary">
                                             {area.title}

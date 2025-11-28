@@ -19,7 +19,7 @@ type PracticesData = {
 export const practicesData: PracticesData = {
   tr: [
     {
-      icon: Gavel,
+      icon: "Gavel",
       title: "Ceza Hukuku Danışmanlığı",
       slug: "ceza-hukuku",
       description:
@@ -78,7 +78,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Landmark,
+      icon: "Landmark",
       title: "İdare Hukuku Danışmanlığı",
       slug: "idare-hukuku",
       description:
@@ -137,7 +137,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Building2,
+      icon: "Building2",
       title: "İş Hukuku Danışmanlığı",
       slug: "is-hukuku",
       description:
@@ -196,7 +196,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Home,
+      icon: 'Home',
       title: "Medeni Hukuk Danışmanlığı",
       slug: "medeni-hukuk",
       description:
@@ -257,7 +257,7 @@ export const practicesData: PracticesData = {
   ],
   en: [
     {
-      icon: Gavel,
+      icon: "Gavel",
       title: "Criminal Law Consulting",
       slug: "criminal-law",
       description:
@@ -316,7 +316,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Landmark,
+      icon: "Landmark",
       title: "Administrative Law Consulting",
       slug: "administrative-law",
       description:
@@ -375,7 +375,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Building2,
+      icon: "Building2",
       title: "Labor Law Consulting",
       slug: "labor-law",
       description:
@@ -434,7 +434,7 @@ export const practicesData: PracticesData = {
       ],
     },
     {
-      icon: Home,
+      icon: "Home",
       title: "Civil Law Consulting",
       slug: "civil-law",
       description:

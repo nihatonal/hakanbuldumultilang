@@ -5,13 +5,11 @@ import { NextResponse } from "next/server";
 type Locale = "tr" | "en";
 const locales: Locale[] = ["tr", "en"];
 
-// BLOG TYPE
 interface BlogItem {
   slug: { current: string };
   publishedAt?: string;
 }
 
-// SITEMAP URL ITEM TYPE
 interface SitemapEntry {
   loc: string;
   lastmod: string;
@@ -19,13 +17,11 @@ interface SitemapEntry {
   priority: number;
 }
 
-// ---- STATIC PAGES ----
 const staticPages: Record<Locale, string[]> = {
   tr: ["/", "/hakkinda", "/calisma-alanlari", "/blog", "/iletisim"],
   en: ["/", "/about", "/services", "/blog", "/contact"],
 };
 
-// ---- LEGAL PAGES ----
 const legalPages: Record<Locale, string[]> = {
   tr: [
     "/gizlilik-politikasi",
@@ -42,14 +38,12 @@ const legalPages: Record<Locale, string[]> = {
 };
 
 export async function GET() {
-  // BLOGS FROM SANITY
   const blogs = (await client.fetch(
     `*[_type=="blog"]{slug, publishedAt}`
   )) as BlogItem[];
 
   const safeBlogs: BlogItem[] = Array.isArray(blogs) ? blogs : [];
 
-  // ---- SERVICES CLEAN OUTPUT ----
   const trServices: string[] = Array.isArray(practicesData?.tr)
     ? practicesData.tr.map((s) => s.slug)
     : [];
@@ -61,7 +55,7 @@ export async function GET() {
   const allUrls: SitemapEntry[] = [];
 
   for (const locale of locales) {
-    // STATIC
+    // STATIC PAGES
     staticPages[locale].forEach((path) => {
       allUrls.push({
         loc: `/${locale}${path}`,
@@ -71,7 +65,7 @@ export async function GET() {
       });
     });
 
-    // LEGAL
+    // LEGAL PAGES
     legalPages[locale].forEach((path) => {
       allUrls.push({
         loc: `/${locale}${path}`,
@@ -81,17 +75,19 @@ export async function GET() {
       });
     });
 
-    // BLOG
-    safeBlogs.forEach((blog) => {
-      allUrls.push({
-        loc: `/${locale}/blog/${blog.slug.current}`,
-        lastmod: blog.publishedAt
-          ? new Date(blog.publishedAt).toISOString()
-          : new Date().toISOString(),
-        changefreq: "monthly",
-        priority: 0.7,
+    // BLOG PAGES — ONLY TR
+    if (locale === "tr") {
+      safeBlogs.forEach((blog) => {
+        allUrls.push({
+          loc: `/tr/blog/${blog.slug.current}`,
+          lastmod: blog.publishedAt
+            ? new Date(blog.publishedAt).toISOString()
+            : new Date().toISOString(),
+          changefreq: "monthly",
+          priority: 0.7,
+        });
       });
-    });
+    }
 
     // SERVICES
     const services = locale === "tr" ? trServices : enServices;
@@ -107,7 +103,6 @@ export async function GET() {
     });
   }
 
-  // XML BUILD
   const xmlUrls = allUrls
     .map(
       (url) => `<url>

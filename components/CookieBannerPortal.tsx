@@ -8,6 +8,7 @@ import Link from 'next/link'
 export default function CookieBannerPortal() {
     const [visible, setVisible] = useState(false)
     const [mounted, setMounted] = useState(false)
+    // const t = useTranlation()
 
     useEffect(() => {
         const consent = localStorage.getItem('cookie_consent')

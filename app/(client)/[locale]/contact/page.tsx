@@ -10,50 +10,76 @@ import {
     getBlogCategories
 } from "@/sanity/queries";
 import HeroSection from '@/components/contact/HeroSection';
+import { buildI18nCanonical } from "@/lib/seo";
 
 const siteUrl = "https://www.hakanbuldu.com";
 
-export const metadata: Metadata = {
-    title: "İletişim - Hakan Buldu | Hukuki Bilgi ve Rehberlik",
-    description: "Hukuki konular hakkında bilgi ve rehberlik almak için Hakan Buldu ile iletişime geçin. Ankara merkezli güvenilir ve deneyimli danışmanlık.",
-    alternates: {
-        canonical: `${siteUrl}/iletisim`,
-    },
-    openGraph: {
-        title: "İletişim - Hakan Buldu",
-        description: "Hukuki konularda doğru bilgi ve rehberlik almak için Hakan Buldu ile iletişime geçin.",
-        url: `${siteUrl}/iletisim`,
-        type: "website",
-        images: [
-            {
-                url: `${siteUrl}/assets/images/contact-og-image.webp`,
-                width: 1200,
-                height: 630,
-                alt: "Hakan Buldu İletişim",
-            },
-        ],
-    },
-};
+export async function generateMetadata({ params }): Promise<Metadata> {
+    const { locale } = await params;
+
+    return {
+        title:
+            locale === "tr"
+                ? "İletişim - Hakan Buldu | Hukuki Bilgi ve Rehberlik"
+                : "Contact - Hakan Buldu | Legal Guidance",
+        description:
+            locale === "tr"
+                ? "Hukuki konular hakkında bilgi ve rehberlik almak için Hakan Buldu ile iletişime geçin."
+                : "Get legal information and guidance by contacting Hakan Buldu.",
+        ...buildI18nCanonical(locale, {
+            tr: "/iletisim",
+            en: "/contact",
+        }),
+        openGraph: {
+            title:
+                locale === "tr"
+                    ? "İletişim - Hakan Buldu"
+                    : "Contact - Hakan Buldu",
+            description:
+                locale === "tr"
+                    ? "Hukuki konularda doğru bilgi ve rehberlik almak için iletişime geçin."
+                    : "Contact us for accurate legal guidance.",
+            url:
+                locale === "tr"
+                    ? `${siteUrl}/tr/iletisim`
+                    : `${siteUrl}/en/contact`,
+            type: "website",
+            images: [
+                {
+                    url: `${siteUrl}/assets/images/contact-og-image.webp`,
+                    width: 1200,
+                    height: 630,
+                    alt:
+                        locale === "tr"
+                            ? "Hakan Buldu İletişim"
+                            : "Hakan Buldu Contact",
+                },
+            ],
+        },
+    };
+}
 
 
-const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "İletişim - Hakan Buldu",
-    description: "Hukuki danışmanlık için iletişim sayfası.",
-    url: `${siteUrl}/iletisim`,
-    contactType: "Hukuki Danışmanlık",
-    areaServed: "Ankara, Türkiye",
-    availableLanguage: ["tr"],
-    mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${siteUrl}/iletisim`,
-    },
-};
-
-const ContactPage = async () => {
-
+const ContactPage = async ({ params }) => {
+    const { locale } = params;
     const categories = await getBlogCategories();
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        name: locale === "tr" ? "İletişim - Hakan Buldu" : "Contact - Hakan Buldu",
+        description:
+            locale === "tr"
+                ? "Hukuki danışmanlık için iletişim sayfası."
+                : "Contact page for legal consultation.",
+        url:
+            locale === "tr"
+                ? `${siteUrl}/tr/iletisim`
+                : `${siteUrl}/en/contact`,
+        contactType: "Legal Consultation",
+        areaServed: locale === "tr" ? "Ankara, Türkiye" : "Ankara, Turkey",
+        availableLanguage: ["tr", "en"],
+    };
 
     return (
         <>

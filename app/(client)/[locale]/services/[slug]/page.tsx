@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import { getLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { practicesData } from '@/constants/practiceAreas';
 import ServiceDetails from '@/components/ServiceDetails';
@@ -9,37 +8,53 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 const siteUrl = 'https://www.hakanbuldu.com';
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { locale, slug } = await params;
-    const data = practicesData[locale as keyof typeof practicesData];
-    const area = data.find((item) => item.slug === slug);
 
-    if (!area) {
+    const data = practicesData[locale as keyof typeof practicesData];
+    const currentArea = data.find((item) => item.slug === slug);
+
+    if (!currentArea) {
         return {
-            title: 'Hukuk Hizmeti',
-            description: 'Uzmanlık alanları hakkında bilgi alın.',
+            title: "Hukuk Hizmeti",
+            description: "Uzmanlık alanları hakkında bilgi alın.",
             alternates: {
-                canonical: `${siteUrl}/calisma-alanlari`,
+                canonical: `${siteUrl}/${locale}/calisma-alanlari`,
             },
         };
     }
-    const canonical = `${siteUrl}/calisma-alanlari/${area.slug}`;
+
+    // index üzerinden EN & TR eşleme
+    const index = data.findIndex((item) => item.slug === slug);
+
+    const trArea = practicesData.tr[index];
+    const enArea = practicesData.en[index];
+
+    const canonicalPath =
+        locale === "tr"
+            ? `/calisma-alanlari/${trArea.slug}`
+            : `/services/${enArea.slug}`;
 
     return {
-        title: `${area.title} | Avukat Hakan Buldu`,
-        description: area.description,
+        title: `${currentArea.title} | Avukat Hakan Buldu`,
+        description: currentArea.description,
         alternates: {
-            canonical,
+            canonical: `${siteUrl}/${locale}${canonicalPath}`,
+            languages: {
+                "tr": `${siteUrl}/tr/calisma-alanlari/${trArea.slug}`,
+                "en": `${siteUrl}/en/services/${enArea.slug}`,
+                "x-default": `${siteUrl}/tr/calisma-alanlari/${trArea.slug}`,
+            }
         },
         openGraph: {
-            title: area.title,
-            description: area.description,
-            url: canonical,
-            type: 'website',
+            title: currentArea.title,
+            description: currentArea.description,
+            url: `${siteUrl}/${locale}${canonicalPath}`,
+            type: "website",
             images: [
                 {
-                    url: `${siteUrl}/images/services/${area.slug}.jpg`,
+                    url: `${siteUrl}/images/services/${currentArea.slug}.jpg`,
                     width: 1200,
                     height: 630,
-                    alt: area.title,
+                    alt: currentArea.title,
                 },
             ],
         },

@@ -7,13 +7,14 @@ export async function GET() {
   const robotsTxt = `
 User-agent: *
 Disallow: /studio/
-Disallow: /api/a
+Disallow: /api/
+Disallow: /admin/    # (Opsiyonel ama önerilir)
 Allow: /
 
 Sitemap: ${siteUrl}/sitemap.xml
 `;
 
-  return new NextResponse(robotsTxt, {
+  return new NextResponse(robotsTxt.trim(), {
     headers: { "Content-Type": "text/plain" },
   });
 }

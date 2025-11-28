@@ -48,6 +48,7 @@ const legalServiceJsonLd = {
   ],
   legalName: "Hakan Buldu Hukuk Bürosu"
 };
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html suppressHydrationWarning>

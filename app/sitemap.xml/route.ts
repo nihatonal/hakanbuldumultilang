@@ -2,108 +2,75 @@ import { practicesData } from "@/constants/practiceAreas";
 import { client } from "@/sanity/lib/client";
 import { NextResponse } from "next/server";
 
+type Locale = "tr" | "en";
+
+const locales: Locale[] = ["tr", "en"];
+
 type SitemapEntry = {
   loc: string;
   lastmod: string;
-  changefreq: "daily" | "weekly" | "monthly" | "yearly";
+  changefreq: string;
   priority: number;
 };
 
 type BlogResult = {
-  slug: {
-    current: string;
-  };
+  slug: { current: string };
   publishedAt?: string;
 };
 
+// Statik sayfalar
+const staticPages = {
+  tr: ["/", "/hakkinda", "/calisma-alanlari", "/blog", "/iletisim"],
+  en: ["/", "/about", "/services", "/blog", "/contact"],
+};
+
 export async function GET() {
-  // Dinamik içerikler
   const blogs: BlogResult[] = await client.fetch(
     `*[_type=="blog"]{slug, publishedAt}`
   );
 
-  const services: string[] = practicesData.map((item) => item.slug);
+  // ❗ Burası düzeltildi
+  const services = Object.values(practicesData)
+    .flat()
+    .map((item: any) => item.slug);
 
-  // Statik sayfalar
-  const staticPages: SitemapEntry[] = [
-    {
-      loc: "/",
-      lastmod: new Date().toISOString(),
-      changefreq: "daily",
-      priority: 1.0,
-    },
-    {
-      loc: "/hakkinda",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/iletisim",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/calisma-alanlari",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/blog",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/gizlilik-politikasi",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/kullanim-sartlari",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/cerez-politikasi",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: "/telif-ve-marka-haklari",
-      lastmod: new Date().toISOString(),
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-  ];
+  const allUrls: SitemapEntry[] = [];
 
-  // Blog URL'leri
-  const blogUrls: SitemapEntry[] = blogs.map((blog) => ({
-    loc: `/blog/${blog.slug.current}`,
-    lastmod: blog.publishedAt
-      ? new Date(blog.publishedAt).toISOString()
-      : new Date().toISOString(),
-    changefreq: "monthly",
-    priority: 0.7,
-  }));
+  for (const locale of locales) {
+    // STATIC PAGES
+    staticPages[locale].forEach((path) => {
+      allUrls.push({
+        loc: `/${locale}${path}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "monthly",
+        priority: 0.8,
+      });
+    });
 
-  // Service URL'leri
-  const serviceUrls: SitemapEntry[] = services.map((slug) => ({
-    loc: `/calisma-alanlari/${slug}`,
-    lastmod: new Date().toISOString(),
-    changefreq: "monthly",
-    priority: 0.7,
-  }));
+    // BLOGS
+    blogs.forEach((blog) => {
+      allUrls.push({
+        loc: `/${locale}/blog/${blog.slug.current}`,
+        lastmod: blog.publishedAt
+          ? new Date(blog.publishedAt).toISOString()
+          : new Date().toISOString(),
+        changefreq: "monthly",
+        priority: 0.7,
+      });
+    });
 
-  // Tüm URL'leri birleştir
-  const allUrls: SitemapEntry[] = [...staticPages, ...blogUrls, ...serviceUrls];
+    // SERVICES
+    services.forEach((slug) => {
+      allUrls.push({
+        loc: `/${locale}/calisma-alanlari/${slug}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "monthly",
+        priority: 0.7,
+      });
+    });
+  }
 
-  const urlset = allUrls
+  const xmlUrls = allUrls
     .map(
       (url) => `<url>
   <loc>https://www.hakanbuldu.com${url.loc}</loc>
@@ -116,13 +83,12 @@ export async function GET() {
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urlset}
+${xmlUrls}
 </urlset>`;
 
   return new NextResponse(sitemap, {
     headers: {
       "Content-Type": "application/xml",
-      "Cache-Control": "no-cache, no-store, must-revalidate", // <-- Önemli: her istekte güncel sitemap
     },
   });
 }

@@ -21,6 +21,7 @@ import NotReadyBlog from '../../../../../assets/images/not-ready-blog-main-image
 import { client } from "@/sanity/lib/client";
 import SingleBlogContent from './SingleBlogContent';
 import { getMostViewedBlogs } from "@/sanity/queries/index";
+import { buildI18nCanonical } from "@/lib/seo";
 
 type Props = {
     params: Promise<{ slug: string; }>;
@@ -81,35 +82,36 @@ const Breadcrumb = ({ categories, title }: { categories: string[], title: string
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
+
     const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
+
+    const locale = slug && typeof slug === "string" ? undefined : undefined; 
+    // BLOG URL'inde locale yok çünkü [locale] üst klasörde
+    // params.locale otomatik gelecek
+
+    const { locale: activeLocale } = await params; // <-- LOCALE BURADA GELİR
 
     if (!blog) {
         return {
             title: 'Hukuk Hizmeti',
             description: 'Uzmanlık alanları hakkında bilgi alın.',
-            alternates: {
-                canonical: `${siteUrl}/blog`,
-            },
+            ...buildI18nCanonical(activeLocale, `/blog`)
         };
     }
-
-    const canonical = `${siteUrl}/blog/${blog.slug.current}`;
 
     return {
         title: `${blog.title} | Avukat Hakan Buldu`,
         description: blog.description,
-        alternates: {
-            canonical,
-        },
+        ...buildI18nCanonical(activeLocale, `/blog/${blog.slug.current}`),
         openGraph: {
             title: blog.title,
             description: blog.description,
-            url: canonical,
-            type: 'website',
+            url: `${siteUrl}/${activeLocale}/blog/${blog.slug.current}`,
+            type: 'article',
             images: blog.mainImage
                 ? [
                     {
-                        url: urlFor(blog.mainImage).url(), // ❌ siteUrl ekleme
+                        url: urlFor(blog.mainImage).url(),
                         width: 1200,
                         height: 630,
                         alt: blog.mainImage.alt || blog.title,

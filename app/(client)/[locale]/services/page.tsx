@@ -5,17 +5,28 @@ import WhyChooseMe from '@/components/services/WhyChooseMe';
 import Process from '@/components/services/Process';
 import Cta from '@/components/services/Cta';
 import Script from "next/script";
+import { buildI18nCanonical } from "@/lib/seo";
 
 const siteUrl = "https://www.hakanbuldu.com";
 
-export const metadata: Metadata = {
-    title: "Çalışma Alanlarımız - Hakan Buldu | Hukuki Bilgi ve Rehberlik",
-    description:
-        "Ceza, idare, iş ve medeni hukuk konularında doğru bilgi ve rehberlik sağlamak için kapsamlı içerikler sunuyorum.",
-    alternates: {
-        canonical: `${siteUrl}/çalışma-alanlari`
-    }
-};
+export async function generateMetadata({ params }): Promise<Metadata> {
+    const { locale } = await params;
+
+    return {
+        title:
+            locale === "tr"
+                ? "Çalışma Alanlarımız - Hakan Buldu | Hukuki Bilgi ve Rehberlik"
+                : "Practice Areas - Hakan Buldu | Legal Information & Guidance",
+        description:
+            locale === "tr"
+                ? "Ceza, idare, iş ve medeni hukuk konularında doğru bilgi ve rehberlik sağlamak için kapsamlı içerikler sunuyorum."
+                : "Providing detailed legal information and guidance on criminal, administrative, labor, and civil law.",
+        ...buildI18nCanonical(locale, {
+            tr: "/calisma-alanlari",
+            en: "/services",
+        }),
+    };
+}
 
 
 const Services = () => {

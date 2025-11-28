@@ -3,14 +3,14 @@ type HeaderData = { [locale: string]: MenuItem[] };
 
 export const headerData: HeaderData = {
   tr: [
-    { path: "/", label: "Ana Sayfa" },
+    { path: "/tr", label: "Ana Sayfa" },
     { path: "/hakkinda", label: "Hakkında" },
     { path: "/calisma-alanlari", label: "Çalışma Alanları" },
     { path: "/blog", label: "Blog" },
     { path: "/iletisim", label: "İletişim" },
   ],
   en: [
-    { path: "/", label: "Home" },
+    { path: "/en", label: "Home" },
     { path: "/about", label: "About" },
     { path: "/services", label: "Services" },
     { path: "/blog", label: "Blog" },

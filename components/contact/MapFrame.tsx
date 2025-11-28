@@ -2,7 +2,6 @@
 
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import { Card } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations"; // varsa
 import { Button } from "@/components/ui/button";

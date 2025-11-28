@@ -1,8 +1,5 @@
 "use client"
 import React from 'react'
-import { Button } from '../ui/button'
-import { Card } from '../ui/card'
-import { MapPin } from 'lucide-react';
 import Container from '../Container';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';

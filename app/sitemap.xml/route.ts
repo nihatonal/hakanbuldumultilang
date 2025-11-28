@@ -5,14 +5,28 @@ import { NextResponse } from "next/server";
 type Locale = "tr" | "en";
 const locales: Locale[] = ["tr", "en"];
 
+// BLOG TYPE
+interface BlogItem {
+  slug: { current: string };
+  publishedAt?: string;
+}
+
+// SITEMAP URL ITEM TYPE
+interface SitemapEntry {
+  loc: string;
+  lastmod: string;
+  changefreq: string;
+  priority: number;
+}
+
 // ---- STATIC PAGES ----
-const staticPages = {
+const staticPages: Record<Locale, string[]> = {
   tr: ["/", "/hakkinda", "/calisma-alanlari", "/blog", "/iletisim"],
   en: ["/", "/about", "/services", "/blog", "/contact"],
 };
 
 // ---- LEGAL PAGES ----
-const legalPages = {
+const legalPages: Record<Locale, string[]> = {
   tr: [
     "/gizlilik-politikasi",
     "/kullanim-sartlari",
@@ -29,12 +43,13 @@ const legalPages = {
 
 export async function GET() {
   // BLOGS FROM SANITY
-  const blogs: any[] = await client.fetch(
+  const blogs = (await client.fetch(
     `*[_type=="blog"]{slug, publishedAt}`
-  );
-  const safeBlogs = Array.isArray(blogs) ? blogs : [];
+  )) as BlogItem[];
 
-  // ---- SERVICES FIXED CLEAN OUTPUT ----
+  const safeBlogs: BlogItem[] = Array.isArray(blogs) ? blogs : [];
+
+  // ---- SERVICES CLEAN OUTPUT ----
   const trServices: string[] = Array.isArray(practicesData?.tr)
     ? practicesData.tr.map((s) => s.slug)
     : [];
@@ -43,10 +58,10 @@ export async function GET() {
     ? practicesData.en.map((s) => s.slug)
     : [];
 
-  const allUrls: any[] = [];
+  const allUrls: SitemapEntry[] = [];
 
   for (const locale of locales) {
-    // STATIC PAGES
+    // STATIC
     staticPages[locale].forEach((path) => {
       allUrls.push({
         loc: `/${locale}${path}`,
@@ -56,7 +71,7 @@ export async function GET() {
       });
     });
 
-    // LEGAL PAGES
+    // LEGAL
     legalPages[locale].forEach((path) => {
       allUrls.push({
         loc: `/${locale}${path}`,
@@ -66,7 +81,7 @@ export async function GET() {
       });
     });
 
-    // BLOG PAGES
+    // BLOG
     safeBlogs.forEach((blog) => {
       allUrls.push({
         loc: `/${locale}/blog/${blog.slug.current}`,
@@ -78,7 +93,7 @@ export async function GET() {
       });
     });
 
-    // SERVICES — CORRECT LOCALE HANDLING
+    // SERVICES
     const services = locale === "tr" ? trServices : enServices;
     const basePath = locale === "tr" ? "calisma-alanlari" : "services";
 
@@ -92,7 +107,7 @@ export async function GET() {
     });
   }
 
-  // BUILD XML
+  // XML BUILD
   const xmlUrls = allUrls
     .map(
       (url) => `<url>
@@ -110,8 +125,6 @@ ${xmlUrls}
 </urlset>`;
 
   return new NextResponse(sitemap, {
-    headers: {
-      "Content-Type": "application/xml",
-    },
+    headers: { "Content-Type": "application/xml" },
   });
 }

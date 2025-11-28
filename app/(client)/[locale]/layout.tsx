@@ -7,8 +7,6 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 const siteUrl = "https://www.hakanbuldu.com";
-const locales: Locale[] = ["tr", "en", "ru"];
-
 export const metadata: Metadata = {
   title: "Hakan Buldu | Ceza, İdare, İş ve Aile Hukukunda Uzman",
   description:

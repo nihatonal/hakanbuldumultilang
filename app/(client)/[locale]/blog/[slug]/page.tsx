@@ -23,9 +23,12 @@ import SingleBlogContent from './SingleBlogContent';
 import { getMostViewedBlogs } from "@/sanity/queries/index";
 import { buildI18nCanonical } from "@/lib/seo";
 
-type Props = {
-    params: Promise<{ slug: string; }>;
-};
+interface Props {
+    params: Promise<{
+        locale: "tr" | "en";
+        slug: string;
+    }>;
+}
 
 interface Blog {
     _id: string;
@@ -81,32 +84,29 @@ const Breadcrumb = ({ categories, title }: { categories: string[], title: string
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = await params;
+    const { slug, locale } = await params;
 
     const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
-
-    const locale = slug && typeof slug === "string" ? undefined : undefined; 
     // BLOG URL'inde locale yok çünkü [locale] üst klasörde
     // params.locale otomatik gelecek
 
-    const { locale: activeLocale } = await params; // <-- LOCALE BURADA GELİR
 
     if (!blog) {
         return {
             title: 'Hukuk Hizmeti',
             description: 'Uzmanlık alanları hakkında bilgi alın.',
-            ...buildI18nCanonical(activeLocale, `/blog`)
+            ...buildI18nCanonical(locale, `/blog`)
         };
     }
 
     return {
         title: `${blog.title} | Avukat Hakan Buldu`,
         description: blog.description,
-        ...buildI18nCanonical(activeLocale, `/blog/${blog.slug.current}`),
+        ...buildI18nCanonical(locale, `/blog/${blog.slug.current}`),
         openGraph: {
             title: blog.title,
             description: blog.description,
-            url: `${siteUrl}/${activeLocale}/blog/${blog.slug.current}`,
+            url: `${siteUrl}/${locale}/blog/${blog.slug.current}`,
             type: 'article',
             images: blog.mainImage
                 ? [

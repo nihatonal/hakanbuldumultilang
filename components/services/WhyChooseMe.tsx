@@ -11,28 +11,36 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';
+import { useTranslations } from 'next-intl';
 
+type Feature = {
+    title: string;
+    description: string;
+};
 const WhyChooseMe = () => {
+    const t = useTranslations("services");
+    const features: Feature[] = t.raw('featuresItems');
+
     const whyChooseUs = [
         {
             icon: Trophy,
-            title: 'Güvenilir Bilgi Kaynağı',
-            description: 'Danışanlara doğru ve anlaşılır bilgi sunarak süreçlerde rehberlik sağlarım.'
+            title: features[0].title,
+            description: features[0].description
         },
         {
             icon: Users,
-            title: 'Deneyim ve Uzmanlık',
-            description: 'Yılların bilgi birikimi ile farklı hukuk konularında yönlendirme yaparım.'
+            title: features[1].title,
+            description: features[1].description
         },
         {
             icon: Award,
-            title: 'Şeffaf ve Açık Yaklaşım',
-            description: 'Tüm bilgi paylaşımında şeffaflık ve güven odaklı iletişim sağlanır.'
+            title: features[2].title,
+            description: features[2].description
         },
         {
             icon: Scale,
-            title: 'Bilgi Güncelliği',
-            description: 'Sürekli güncellenen bilgilerle karmaşık konuları anlaşılır hâle getiririm.'
+            title: features[3].title,
+            description: features[3].description
         }
     ];
 
@@ -50,10 +58,10 @@ const WhyChooseMe = () => {
                     {/* Başlık */}
                     <motion.div className="text-center mb-16" variants={fadeUp}>
                         <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">
-                            Neden Bize Danışmalısınız?
+                            {t("features.title")}
                         </h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            Hukuki konular hakkında doğru ve güvenilir bilgilendirme sağlamak için çalışıyorum.
+                            {t("features.subtitle")}
                         </p>
                     </motion.div>
 

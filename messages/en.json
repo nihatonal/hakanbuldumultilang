@@ -91,5 +91,72 @@
       "title": "Popular Articles",
       "subtitle": "Find the most recent and interesting articles here."
     }
+  },
+  "services": {
+    "common": {
+      "service": "Service Areas:",
+      "detailsBtn": "Details"
+    },
+    "hero": {
+      "title": "Our Areas of Practice",
+      "subtitle": "With extensive legal knowledge and expertise in my specialized areas, I provide comprehensive legal services. I am here for experienced and reliable solutions in every field.",
+      "badge": "Comprehensive Legal Services",
+      "cta": {
+        "path": "/contact",
+        "label": "Ask Your Question"
+      }
+    },
+    "features": {
+      "title": "Why Consult Us?",
+      "subtitle": "I work to provide accurate and reliable information on legal matters."
+    },
+    "featuresItems": [
+      {
+        "title": "Reliable Information Source",
+        "description": "I guide clients by providing accurate and understandable information throughout the process."
+      },
+      {
+        "title": "Experience and Expertise",
+        "description": "With years of knowledge, I provide guidance on various legal matters."
+      },
+      {
+        "title": "Transparent and Open Approach",
+        "description": "All information sharing is done transparently with trust-focused communication."
+      },
+      {
+        "title": "Up-to-date Information",
+        "description": "I make complex issues understandable with continuously updated information."
+      }
+    ],
+    "steps": {
+      "title": "My Work Process",
+      "subtitle": "I follow a transparent, planned, and results-oriented process with my clients to achieve the best solutions."
+    },
+    "stepsItems": [
+      {
+        "title": "Initial Contact",
+        "description": "Share your question or issue and gather information to understand the situation."
+      },
+      {
+        "title": "Information Sharing",
+        "description": "Provide accurate and up-to-date information regarding your questions or situation."
+      },
+      {
+        "title": "Guidance",
+        "description": "Offer guidance on which steps to follow in the relevant processes."
+      },
+      {
+        "title": "Next Steps",
+        "description": "If needed, you can contact again for additional questions."
+      }
+    ],
+    "cta": {
+      "title": "Do You Have Questions About Legal Matters?",
+      "subtitle": "Share your legal questions, and we will provide guidance with accurate and up-to-date information.",
+      "cta": {
+        "path": "/contact",
+        "label": "Get Response / Learn More"
+      }
+    }
   }
 }

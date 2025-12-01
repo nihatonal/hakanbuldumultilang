@@ -1,94 +1,99 @@
 {
   "common": {
     "nav": {
-      "home": "Home",
-      "about": "About",
-      "services": "Services",
+      "home": "Anasayfa",
+      "about": "Hakkında",
+      "services": "Çalışma Alanları",
       "blog": "Blog",
-      "contact": "Contact"
+      "contact": "İletişim"
     },
     "headerBtn": "Hemen Yanıt Alın",
+    "consultation": {
+      "path": "/iletisim",
+      "label": "Ücretsiz Danışmanlık"
+    },
     "footer": {
       "title": "Hakan Buldu",
-      "subtitle": "We are here to provide accurate legal information. Our priority is to guide you and make the process clear at every step.",
-      "quickLinks": "Quick Links",
-      "contact": "Contact",
-      "copyrights": "© 2025 Hakan Buldu. All rights reserved.",
+      "subtitle": "Hukuki konularda doğru bilgiye ulaşmanız için buradayız. Her adımda sizi bilgilendirmek ve süreci birlikte anlamak önceliğimizdir.",
+      "quickLinks": "Hızlı Linkler",
+      "contact": "İletişim",
+      "copyrights": "© 2025 Hakan Buldu. Tüm hakları saklıdır.",
       "policy": {
-        "path": "/privacy",
-        "label": "Privacy Policy"
+        "path": "/gizlilik-politikasi",
+        "label": "Gizlilik Politikası"
       },
       "terms": {
-        "path": "/terms-of-use",
-        "label": "Terms of Use"
+        "path": "/kullanim-sartlari",
+        "label": "Kullanım Şartları"
       },
       "cookies": {
-        "path": "/cookies",
-        "label": "Cookies Policy"
+        "path": "/cerez-politikasi",
+        "label": "Çerez Politikası"
       },
       "rights": {
-        "path": "/rights-of-content",
-        "label": "Copyright & Trademark Rights"
+        "path": "/telif-ve-marka-haklari",
+        "label": "Telif & Marka Hakları"
       }
     }
   },
   "home": {
     "hero": {
-      "title": "Strategic legal guidance to protect your rights effectively and securely",
-      "subtitle": "I provide an impartial, reliable, and guiding approach to help you access accurate legal information and make informed decisions.",
-      "badge": "Professional Approach, Clear Results",
+      "title": "Haklarınızın etkin ve güvenli bir şekilde korunması için stratejik hukuki rehberlik",
+      "subtitle": "Hukuki süreçlerde doğru bilgiye ulaşmanızı ve bilinçli kararlar verebilmenizi sağlamak için tarafsız, güvenilir ve yol gösterici bir yaklaşım sunuyorum.",
+      "badge": "Profesyonel Yaklaşım, Net Sonuçlar",
       "cta": {
-        "path": "/contact",
-        "label": "Ask Your Question"
+        "path": "/iletisim",
+        "label": "Sorunuzu Sorun"
       }
     },
     "stats": {
-      "experience": "Years of Experience",
-      "people": "Clients Served",
-      "articles": "Legal Articles",
-      "session": "Consultation Sessions"
+      "experience": "Yıl Deneyim",
+      "people": "Danışılan Kişi",
+      "articles": "Hukuki Makale",
+      "session": "Bilgilendirme Oturumu"
     },
     "services": {
-      "title": "My Practice Areas",
-      "subtitle": "Professional practice shaped by experience and combined with analytical and academic depth; strengthened by law, sustainable and reliable.",
+      "title": "Çalışma Alanlarım",
+      "subtitle": "Deneyimle şekillenen analiz ve akademik derinlikle birleşen profesyonel uygulama; hukukla güclenen, sürdürülebilir ve güvenilir sonuçlar.",
       "cta": {
-        "path": "/services",
-        "label": "All Practice Areas"
-      }
+        "path": "/calisma-alanlari",
+        "label": "Tüm Faaliyet Alanları"
+      },
+      "ctaCard": "Detayları Görüntüle"
     },
     "about": {
       "title": "Hakan Buldu",
-      "subtitle": "With over 15 years of experience, I provide accurate, clear, and reliable legal guidance. Graduated from Dokuz Eylül University Faculty of Law, I offer advisory services in criminal, civil, and compensation law.",
-      "badge": "Legal Guidance and Advisory",
+      "subtitle": "15 yılı aşkın tecrübemle, hukuki süreçler ve haklar konusunda doğru, anlaşılır ve güvenilir bilgilendirme sunuyorum. Dokuz Eylül Üniversitesi Hukuk Fakültesi mezunu olarak, ceza, medeni ve tazminat alanlarında yönlendirici danışmanlık sağlıyorum.",
+      "badge": "Hukuki Bilgilendirme ve Rehberlik",
       "items": [
-        "Dokuz Eylül University Faculty of Law",
-        "15+ Years of Legal Experience",
-        "500+ Consultations and Guidance Sessions"
+        "Dokuz Eylül Üniversitesi Hukuk Fakültesi",
+        "15+ Yıl Hukuk Alanında Deneyim",
+        "500+ Bilgilendirme ve Rehberlik Görüşmesi"
       ],
       "cta": {
-        "path": "/about",
-        "label": "Learn More"
+        "path": "/hakkinda",
+        "label": "Daha Fazla Bilgi"
       }
     },
     "testimonials": {
-      "title": "Client Testimonials"
+      "title": "Danışan Yorumları"
     },
     "cta": {
-      "title": "Need Legal Advice?",
-      "subtitle": "Reach out to learn more about various legal areas and understand the process better. We provide reliable and clear information.",
+      "title": "Hukuki Konularda Bilgiye mi İhtiyacınız Var?",
+      "subtitle": "Farklı hukuk alanlarına dair merak ettiklerinizi öğrenmek ve süreci daha net anlamak için bizimle iletişime geçin. Size güvenilir ve anlaşılır bilgi sunuyoruz.",
       "cta": {
         "cta1": {
-          "label": "Call Now"
+          "label": "Hemen Arayın"
         },
         "cta2": {
-          "path": "/contact",
-          "label": "Send Your Question"
+          "path": "/iletisim",
+          "label": "Sorunuzu Gönderin"
         }
       }
     },
     "blogs": {
-      "title": "Popular Articles",
-      "subtitle": "Find the most recent and interesting articles here."
+      "title": "Popüler Yazılar",
+      "subtitle": "En güncel ve ilgi çekici yazılarımı burada bulabilirsiniz."
     }
   }
 }

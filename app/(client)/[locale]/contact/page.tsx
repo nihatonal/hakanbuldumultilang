@@ -61,7 +61,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 
 
 const ContactPage = async ({ params }) => {
-    const { locale } = params;
+    const { locale } = await params;
     const categories = await getBlogCategories();
 
     const jsonLd = {

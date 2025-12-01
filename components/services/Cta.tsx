@@ -6,8 +6,9 @@ import { Button } from '../ui/button';
 import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';
-
+import { useTranslations } from 'next-intl';
 const Cta = () => {
+    const t = useTranslations("services")
     return (
         <section className="section-padding bg-gradient-to-r from-primary to-primary-light text-white">
             <motion.div
@@ -20,11 +21,10 @@ const Cta = () => {
                 {/* Başlık ve açıklama */}
                 <motion.div variants={fadeUp} className="mb-6">
                     <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-                        Hukuki Konularda Sorularınız mı Var?
+                        {t("cta.title")}
                     </h2>
                     <p className="text-xl mb-8 max-w-3xl mx-auto text-white/90">
-                        Hukuki konular hakkında merak ettiklerinizi paylaşın,
-                        size doğru ve güncel bilgilerle yol gösterecek rehberlik sunalım.
+                        {t("cta.subtitle")}
                     </p>
                 </motion.div>
 
@@ -34,9 +34,9 @@ const Cta = () => {
                     variants={fadeUp}
                 >
                     <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent-dark">
-                        <Link href="/iletisim" className="flex items-center justify-center gap-2">
+                        <Link href={t("cta.cta.path")} className="flex items-center justify-center gap-2">
                             <Phone className="h-5 w-5" />
-                            Yanıt Al / Bilgi Edinin
+                            {t("cta.cta.label")}
                         </Link>
                     </Button>
                 </motion.div>

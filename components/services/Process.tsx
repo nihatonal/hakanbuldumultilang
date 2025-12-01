@@ -4,28 +4,35 @@ import React from 'react';
 import Container from '../Container';
 import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';
+import { useTranslations } from 'next-intl';
 
+type Steps = {
+  title: string;
+  description: string;
+};
 const Process = () => {
+  const t = useTranslations("services");
+  const stepsItems: Steps[] = t.raw('stepsItems');
   const steps = [
     {
       step: '01',
-      title: 'İlk İletişim',
-      description: 'Sorunuzu veya konunuzu paylaşın, durumu anlamak için bilgi alın.'
+      title: stepsItems[0].title,
+      description: stepsItems[0].description
     },
     {
       step: '02',
-      title: 'Bilgi Paylaşımı',
-      description: 'Sorularınıza veya durumunuza yönelik doğru ve güncel bilgiler sunulur.'
+      title: stepsItems[1].title,
+      description: stepsItems[1].description
     },
     {
       step: '03',
-      title: 'Yönlendirme',
-      description: 'İlgili süreçlerde hangi adımları takip edebileceğinize dair rehberlik sağlanır.'
+      title: stepsItems[2].title,
+      description: stepsItems[2].description
     },
     {
       step: '04',
-      title: 'Sonraki Adımlar',
-      description: 'İhtiyaç duyarsanız ek sorular için tekrar iletişim kurabilirsiniz.'
+      title: stepsItems[3].title,
+      description: stepsItems[3].description
     }
   ];
 
@@ -44,10 +51,10 @@ const Process = () => {
           {/* BAŞLIK */}
           <motion.div className="text-center mb-16" variants={fadeUp}>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-primary mb-4">
-              Çalışma Sürecim
+              {t("steps.title")}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Danışanlarımla şeffaf, planlı ve sonuç odaklı bir süreç izleyerek en iyi çözümleri üretirim.
+            {t("steps.subtitle")}
             </p>
           </motion.div>
 

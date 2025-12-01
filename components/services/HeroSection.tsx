@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useTransition } from 'react';
 import { Badge } from '../ui/badge';
 import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';
-
+import { useTranslations } from 'next-intl';
 const HeroSection = () => {
+    const t = useTranslations("services")
     return (
         <section className="section-padding bg-gradient-to-r from-primary to-primary-light text-white">
             <motion.div
@@ -17,7 +18,7 @@ const HeroSection = () => {
             >
                 <motion.div variants={fadeUp}>
                     <Badge className="mb-4 bg-accent text-accent-foreground">
-                        Kapsamlı Hukuki Hizmetler
+                        {t("hero.badge")}
                     </Badge>
                 </motion.div>
 
@@ -25,15 +26,14 @@ const HeroSection = () => {
                     variants={fadeUp}
                     className="font-display text-4xl md:text-6xl font-bold mb-6"
                 >
-                    Çalışma Alanlarımız
+                     {t("hero.title")}
                 </motion.h1>
 
                 <motion.p
                     variants={fadeUp}
                     className="text-xl mb-8 max-w-3xl mx-auto text-white/90"
                 >
-                    Geniş hukuk bilgim ve uzmanlaştığım alanlarla, sizlere kapsamlı hukuki hizmet sunuyorum.
-                    Her alanda deneyimli ve güvenilir çözümler için yanınızdayım.
+                    {t("hero.subtitle")}
                 </motion.p>
             </motion.div>
         </section>

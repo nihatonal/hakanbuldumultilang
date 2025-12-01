@@ -14,9 +14,11 @@ import { fadeUp, containerStagger } from '@/lib/animations';
 import Link from '@/node_modules/next/link';
 import { practicesData } from '@/constants/practiceAreas';
 import IconMapper from '../IconMapper';
+import { useTranslations } from 'next-intl';
 const PracticeAreas = () => {
     const locale = useLocale();
     const data = practicesData[locale];
+    const t = useTranslations("services")
     return (
         <section className="section-padding">
             <Container>
@@ -52,7 +54,7 @@ const PracticeAreas = () => {
                                         </p>
 
                                         <div className="mb-4">
-                                            <h4 className="font-semibold text-primary text-sm sm:text-base mb-2">Hizmet Alanları:</h4>
+                                            <h4 className="font-semibold text-primary text-sm sm:text-base mb-2">{t("common.service")}</h4>
                                             <ul className="space-y-1">
                                                 {area.services.map((service, i) => (
                                                     <li
@@ -72,7 +74,7 @@ const PracticeAreas = () => {
                                             </Badge>
                                         </div>
                                         <Link href={`/calisma-alanlari/${area.slug}`} className=" flex items-center py-2 px-4 rounded-full mt-8 md:mt-0 ml-auto bg-accent/80 cursor-pointer text-accent text-white hover:bg-accent/100">
-                                            Detaylar <ArrowRight className="ml-2 h-4 w-4" />
+                                            {t("common.detailsBtn")} <ArrowRight className="ml-2 h-4 w-4" />
                                         </Link>
                                     </div>
                                 </Card>

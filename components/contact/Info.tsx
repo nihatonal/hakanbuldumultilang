@@ -4,35 +4,36 @@ import { Card } from '../ui/card'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import Container from '../Container';
 import { motion } from 'framer-motion';
-
+import { useTranslations } from 'next-intl';
 const Info = () => {
+    const t = useTranslations('contact.info');
     const contactInfo = [
         {
             icon: Phone,
-            title: 'Telefon',
+            title: t("phone.title"),
             details: ['+90 530 561 00 34'],
-            description: 'Acil veya genel sorularınız için doğrudan ulaşabilirsiniz.'
+            description: t("phone.desc")
         },
         {
             icon: Mail,
-            title: 'E-posta',
+            title: t("mail.title"),
             details: ['info@hakanbuldu.com'],
-            description: 'Sorularınıza 24 saat içinde bilgilendirme odaklı yanıt veririm.'
+            description: t("mail.desc")
         },
         {
             icon: MapPin,
-            title: 'Adres',
+            title: t("address.title"),
             details: ['Yıldızevler mah. Rabindranath Tagore Cad. 29/10', 'Çankaya/Ankara'],
-            description: 'Ofise gelmeden önce randevu almanız tavsiye edilir.'
+            description: t("address.desc"),
         },
         {
             icon: Clock,
-            title: 'Ulaşılabilirlik',
+            title: t("availablity.title"),
             details: [
-                'Pazartesi - Cuma: 09:00-18:00',
-                'Cumartesi: 09:00-14:00'
+                `${t("availablity.dates")}: 09:00-18:00`,
+                `${t("availablity.dates2")}: 09:00-14:00`
             ],
-            description: 'Sorularınızı iletmek için uygun zamanlar. Randevu ile esnek görüşme de sağlanabilir.'
+            description: t("availablity.desc")
         }
 
     ];

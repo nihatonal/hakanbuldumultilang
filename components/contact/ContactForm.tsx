@@ -11,14 +11,17 @@ import { Button } from '../ui/button'
 import { motion } from 'framer-motion'
 import { fadeUp, containerStagger } from '@/lib/animations'
 import CategorySelectWrapper from '../CategorySelectWrapper'
-
+import { useTranslations, useLocale } from 'next-intl'
 
 interface ContactFormProps {
   legalAreas: string[]
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
-  const { toast } = useToast()
+  const t = useTranslations('contact.form');
+  const locale = useLocale();
+  const { toast } = useToast();
+
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -28,15 +31,15 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
     message: '',
     legalArea: ''
   })
-  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: 'Eksik Bilgi',
-        description: 'Lütfen zorunlu alanları doldurun.',
+        title: t('toast.missingTitle'),
+        description: t('toast.missingDescription'),
         variant: 'destructive'
       })
       return
@@ -44,9 +47,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
 
     try {
       setLoading(true)
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
 
@@ -54,8 +57,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
 
       if (res.ok && data.success) {
         toast({
-          title: 'Mesajınız Gönderildi.',
-          description: 'En kısa sürede size dönüş yapacağım. Teşekkür ederim.'
+          title: t('toast.successTitle'),
+          description: t('toast.successDescription'),
         })
         setFormData({
           name: '',
@@ -65,19 +68,19 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
           message: '',
           legalArea: ''
         })
-        setSelectedCategory("")
+        setSelectedCategory('')
       } else {
         toast({
-          title: 'Hata',
-          description: data.error || 'Mesaj gönderilemedi.',
+          title: t('toast.errorTitle'),
+          description: data.error || t('toast.errorDescription'),
           variant: 'destructive'
         })
       }
     } catch (err) {
       console.error(err)
       toast({
-        title: 'Hata',
-        description: 'Mesaj gönderilemedi.',
+        title: t('toast.errorTitle'),
+        description: t('toast.errorDescription'),
         variant: 'destructive'
       })
     } finally {
@@ -111,38 +114,37 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
     >
       <motion.div variants={fadeUp} className="mb-8">
         <h2 className="font-display text-3xl font-bold text-primary mb-4">
-          Bilgi ve Danışmanlık Formu
+          {t('heading')}
         </h2>
         <p className="text-muted-foreground">
-          Hukuki durumunuzu detaylı bir şekilde paylaşabilirsiniz. Sorularınıza doğru ve güvenilir bilgilerle yanıt verilecek, süreçler hakkında rehberlik sağlanacaktır. Tüm bilgileriniz gizli tutulur.
+          {t('description')}
         </p>
       </motion.div>
-
 
       <motion.div variants={fadeUp}>
         <Card className="card-elegant">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="name">Ad Soyad *</Label>
+                <Label htmlFor="name">{t('fields.name')} *</Label>
                 <Input
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Adınız ve soyadınız"
+                  placeholder={t('placeholders.name')}
                   required
                 />
               </div>
               <div>
-                <Label htmlFor="email">E-posta *</Label>
+                <Label htmlFor="email">{t('fields.email')} *</Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="ornek@email.com"
+                  placeholder={t('placeholders.email')}
                   required
                 />
               </div>
@@ -150,47 +152,47 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="phone">Telefon</Label>
+                <Label htmlFor="phone">{t('fields.phone')}</Label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="+90 5XX XXX XX XX"
+                  placeholder={t('placeholders.phone')}
                 />
               </div>
-              <div>
-                <Label htmlFor="legalArea">Hukuki Alan</Label>
+              {locale === "tr" && <div>
+                <Label htmlFor="legalArea">{t('fields.legalArea')}</Label>
                 <CategorySelectWrapper
                   categories={legalAreas}
                   selectedCategory={selectedCategory}
                   setSelectedCategory={setSelectedCategory}
-                  defaultOptionLabel="Diğer"
+                  defaultOptionLabel={t('placeholders.legalAreaDefault')}
                   defaultOptionPosition="bottom"
                 />
-              </div>
+              </div>}
             </div>
 
             <div>
-              <Label htmlFor="subject">Konu</Label>
+              <Label htmlFor="subject">{t('fields.subject')}</Label>
               <Input
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleInputChange}
-                placeholder="Danışmanlık konusu"
+                placeholder={t('placeholders.subject')}
               />
             </div>
 
             <div>
-              <Label htmlFor="message">Mesajınız *</Label>
+              <Label htmlFor="message">{t('fields.message')} *</Label>
               <Textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                placeholder="Hukuki durumunuzla ilgili merak ettiğiniz soruları veya bilgi taleplerinizi buraya yazabilirsiniz..."
+                placeholder={t('placeholders.message')}
                 rows={6}
                 required
               />
@@ -198,10 +200,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
 
             <div className="flex items-start space-x-3 text-sm text-muted-foreground">
               <Shield className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-              <p>
-                Gönderdiğiniz tüm bilgiler gizlilik kapsamında korunur.
-                Kişisel verileriniz güvenle saklanır.
-              </p>
+              <p>{t('privacyNotice')}</p>
             </div>
 
             <Button
@@ -213,12 +212,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ legalAreas }) => {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Gönderiliyor...
+                  {t('button.sending')}
                 </>
               ) : (
                 <>
                   <Send className="mr-2 h-5 w-5" />
-                  Mesajı Gönder
+                  {t('button.sendMessage')}
                 </>
               )}
             </Button>

@@ -45,7 +45,7 @@ const HomeAbout = () => {
                         </div>
 
                         <Button asChild size="lg" className="btn-primary">
-                            <Link href="/hakkinda">Daha Fazla Bilgi</Link>
+                            <Link href={t("cta.path")}>{t("cta.label")}</Link>
                         </Button>
                     </motion.div>
 

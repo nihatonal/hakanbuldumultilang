@@ -1,33 +1,14 @@
-"use client"
+'use client'
 import React from 'react'
 import { Card } from '../ui/card'
-import { CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { fadeUp, containerStagger } from '@/lib/animations';
+import { CheckCircle } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { fadeUp, containerStagger } from '@/lib/animations'
+import { useTranslations } from 'next-intl'
 
 const ProcessSteps = () => {
-    const processSteps = [
-        {
-            step: '1',
-            title: 'İletişim',
-            description: 'Formu doldurun veya direkt arayın'
-        },
-        {
-            step: '2',
-            title: 'Değerlendirme',
-            description: 'Durumunuzu inceleyip size geri dönüş sağlıyorum'
-        },
-        {
-            step: '3',
-            title: 'Danışmanlık Görüşmesi',
-            description: 'İlk danışmanlık görüşmesini planlayın'
-        },
-        {
-            step: '4',
-            title: 'Çözüm ve Rehberlik',
-            description: 'Hukuki süreçle ilgili net ve güvenilir rehberlik sunuyorum'
-        }
-    ];
+    const t = useTranslations('contact.processSteps')
+    const steps = [] = t.raw('steps');
 
     return (
         <motion.div
@@ -38,15 +19,13 @@ const ProcessSteps = () => {
         >
             <motion.div variants={fadeUp} className="mb-8">
                 <h2 className="font-display text-3xl font-bold text-primary mb-4">
-                    Nasıl Çalışıyoruz?
+                    {t('heading')}
                 </h2>
-                <p className="text-muted-foreground">
-                    Her adımda şeffaf ve anlaşılır bilgi paylaşımı ile yönlendirme sağlıyoruz. Sürecin her aşamasında neler olacağını bilirsiniz.
-                </p>
+                <p className="text-muted-foreground">{t('description')}</p>
             </motion.div>
 
             <div className="space-y-6">
-                {processSteps.map((step, index) => (
+                {steps.map((step: any, index: number) => (
                     <motion.div key={index} variants={fadeUp}>
                         <Card className="card-elegant">
                             <div className="flex items-start space-x-4">
@@ -71,17 +50,14 @@ const ProcessSteps = () => {
                         <CheckCircle className="h-6 w-6 text-accent mt-1 flex-shrink-0" />
                         <div>
                             <h3 className="font-display text-lg font-semibold text-primary mb-2">
-                                Bilgi ve Yönlendirme
+                                {t("infoCard.title")}
                             </h3>
-                            <p className="text-muted-foreground text-sm">
-                                Durumunuzu detaylı şekilde değerlendiriyor, anlaşılır ve güvene dayalı bir rehberlik sunuyoruz. Her adımda ne yapmanız gerektiğini bilirsiniz.
-                            </p>
+                            <p className="text-muted-foreground text-sm"> {t("infoCard.description")}</p>
                         </div>
                     </div>
                 </Card>
             </motion.div>
         </motion.div>
-
     )
 }
 

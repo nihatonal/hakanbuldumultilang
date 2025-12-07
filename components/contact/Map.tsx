@@ -4,8 +4,10 @@ import Container from '../Container';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import ContactMap from './MapFrame';
+import { useTranslations } from 'next-intl';
 
 const Map = () => {
+    const t = useTranslations('contact.map')
     return (
         <section className="section-padding bg-secondary/30">
             <Container>
@@ -13,11 +15,10 @@ const Map = () => {
                     <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <div className="text-center mb-12">
                             <h2 className="font-display text-3xl font-bold text-primary mb-4">
-                                Ofis Konumum
+                                {t('title')}
                             </h2>
                             <p className="text-muted-foreground max-w-2xl mx-auto">
-                                Ankara&apos;nın merkezinde, kolay ulaşılabilir konumda bulunan ofisimde
-                                sizleri bekliyorum.
+                                {t('subtitle')}
                             </p>
                         </div>
                     </motion.div>

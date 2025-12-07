@@ -16,6 +16,7 @@ export default function MobileMenu() {
     const locale = useLocale();
     const t = useTranslations("common")
     const menuItems = headerData[locale];
+
     return (
         <>
             {/* Hamburger Button */}

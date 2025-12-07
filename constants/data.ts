@@ -16,6 +16,13 @@ export const headerData: HeaderData = {
     { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" },
   ],
+  ru: [
+    { path: "/tr", label: "Ana Sayfa" },
+    { path: "/hakkinda", label: "Hakkında" },
+    { path: "/calisma-alanlari", label: "Çalışma Alanları" },
+    { path: "/blog", label: "Blog" },
+    { path: "/iletisim", label: "İletişim" },
+  ],
 };
 
 export const staticsData = [

@@ -5,10 +5,11 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/animations"; // varsa
 import { Button } from "@/components/ui/button";
-
+import { useTranslations } from 'next-intl';
 const center = { lat: 39.8803, lng: 32.8359 };
 
 export default function ContactMap() {
+    const t = useTranslations('contact.map')
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
     });
@@ -69,8 +70,8 @@ export default function ContactMap() {
                             )
                         }
                     >
-                        Haritada Görüntüle
-                    </Button>   
+                        {t('cta.label')}
+                    </Button>
                 </div>
 
             </Card>

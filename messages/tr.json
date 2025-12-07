@@ -162,5 +162,116 @@
         "label": "Yanıt Al / Bilgi Edinin"
       }
     }
+  },
+  "contact": {
+    "hero": {
+      "title": "İletişim",
+      "subtitle": "Hukuki konular hakkında merak ettiklerinizi paylaşın. Size doğru ve güncel bilgilerle rehberlik ederek yönlendirme yapabilirim",
+      "badge": "Hemen İletişime Geçin",
+      "cta": {
+        "label1": "Hemen Yanıt Alın",
+        "label2": "Bilgi İsteyin"
+      }
+    },
+    "info": {
+      "phone": {
+        "title": "Telefon",
+        "desc": "Acil veya genel sorularınız için doğrudan ulaşabilirsiniz."
+      },
+      "mail": {
+        "title": "E-posta",
+        "desc": "Sorularınıza 24 saat içinde bilgilendirme odaklı yanıt veririm."
+      },
+      "address": {
+        "title": "Telefon",
+        "desc": "Ofise gelmeden önce randevu almanız tavsiye edilir."
+      },
+      "availablity": {
+        "title": "Ulaşılabilirlik",
+        "dates": "Pazartesi - Cuma:",
+        "dates2": "Cumartesi",
+        "desc": "Sorularınızı iletmek için uygun zamanlar. Randevu ile esnek görüşme de sağlanabilir."
+      }
+    },
+    "form": {
+      "heading": "Bilgi ve Danışmanlık Formu",
+      "description": "Hukuki durumunuzu detaylı bir şekilde paylaşabilirsiniz. Sorularınıza doğru ve güvenilir bilgilerle yanıt verilecek, süreçler hakkında rehberlik sağlanacaktır. Tüm bilgileriniz gizli tutulur.",
+      "fields": {
+        "name": "Ad Soyad",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "subject": "Konu",
+        "message": "Mesajınız",
+        "legalArea": "Hukuki Alan"
+      },
+      "placeholders": {
+        "name": "Adınız ve soyadınız",
+        "email": "ornek@email.com",
+        "phone": "+90 5XX XXX XX XX",
+        "subject": "Danışmanlık konusu",
+        "message": "Hukuki durumunuzla ilgili merak ettiğiniz soruları veya bilgi taleplerinizi buraya yazabilirsiniz...",
+        "legalAreaDefault": "Diğer"
+      },
+      "button": {
+        "sendMessage": "Mesajı Gönder",
+        "sending": "Gönderiliyor..."
+      },
+      "toast": {
+        "missingTitle": "Eksik Bilgi",
+        "missingDescription": "Lütfen zorunlu alanları doldurun.",
+        "successTitle": "Mesajınız Gönderildi.",
+        "successDescription": "En kısa sürede size dönüş yapacağım. Teşekkür ederim.",
+        "errorTitle": "Hata",
+        "errorDescription": "Mesaj gönderilemedi."
+      },
+      "privacyNotice": "Gönderdiğiniz tüm bilgiler gizlilik kapsamında korunur. Kişisel verileriniz güvenle saklanır."
+    },
+    "processSteps": {
+      "heading": "Nasıl Çalışıyoruz?",
+      "description": "Her adımda şeffaf ve anlaşılır bilgi paylaşımı ile yönlendirme sağlıyoruz. Sürecin her aşamasında neler olacağını bilirsiniz.",
+      "steps": [
+        {
+          "step": "1",
+          "title": "İletişim",
+          "description": "Formu doldurun veya direkt arayın"
+        },
+        {
+          "step": "2",
+          "title": "Değerlendirme",
+          "description": "Durumunuzu inceleyip size geri dönüş sağlıyorum"
+        },
+        {
+          "step": "3",
+          "title": "Danışmanlık Görüşmesi",
+          "description": "İlk danışmanlık görüşmesini planlayın"
+        },
+        {
+          "step": "4",
+          "title": "Çözüm ve Rehberlik",
+          "description": "Hukuki süreçle ilgili net ve güvenilir rehberlik sunuyorum"
+        }
+      ],
+      "infoCard": {
+        "title": "Bilgi ve Yönlendirme",
+        "description": "Durumunuzu detaylı şekilde değerlendiriyor, anlaşılır ve güvene dayalı bir rehberlik sunuyoruz. Her adımda ne yapmanız gerektiğini bilirsiniz."
+      }
+    },
+    "map": {
+      "title": "Ofis Konumum",
+      "subtitle": "Ankara'nın merkezinde, kolay ulaşılabilir konumda bulunan ofisimde sizleri bekliyorum",
+      "cta": {
+        "label": "Haritada Görüntüle"
+      }
+    },
+    "cta": {
+      "title": "Hızlı Bilgilendirme Gerekli mi?",
+      "subtitle": "Gözaltı, tutuklama veya acil durumlarda bilgi almak için doğrudan ulaşabilirsiniz. Sürecin her aşamasında doğru ve anlaşılır rehberlik sağlıyorum",
+      "cta1": {
+        "label": "Hemen Arayın"
+      },
+      "cta2": { 
+        "label": "WhatsApp Bilgi Al"
+      }
+    }
   }
 }

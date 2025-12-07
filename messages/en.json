@@ -8,6 +8,10 @@
       "contact": "Contact"
     },
     "headerBtn": "Get a Fast Response",
+    "consultation": {
+      "path": "/contact",
+      "label": "Free Consulting"
+    },
     "footer": {
       "title": "Hakan Buldu",
       "subtitle": "We are here to provide accurate legal information. Our priority is to guide you and make the process clear at every step.",
@@ -156,6 +160,117 @@
       "cta": {
         "path": "/contact",
         "label": "Get Response / Learn More"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact",
+      "subtitle": "Share your legal questions and concerns. I can guide you with accurate and up-to-date information.",
+      "badge": "Get in Touch Now",
+      "cta": {
+        "label1": "Get an Immediate Response",
+        "label2": "Request Information"
+      }
+    },
+    "info": {
+      "phone": {
+        "title": "Phone",
+        "desc": "You can reach out directly for urgent or general inquiries."
+      },
+      "mail": {
+        "title": "Email",
+        "desc": "I respond with informative answers within 24 hours."
+      },
+      "address": {
+        "title": "Address",
+        "desc": "It is recommended to book an appointment before visiting the office."
+      },
+      "availablity": {
+        "title": "Availability",
+        "dates": "Monday - Friday:",
+        "dates2": "Saturday",
+        "desc": "Times when you can reach out. Flexible meetings are possible by appointment."
+      }
+    },
+    "form": {
+      "heading": "Information & Consultation Form",
+      "description": "You can share your legal situation in detail. Your questions will be answered accurately and reliably, and guidance on procedures will be provided. All information is kept confidential.",
+      "fields": {
+        "name": "Full Name",
+        "email": "Email",
+        "phone": "Phone",
+        "subject": "Subject",
+        "message": "Message",
+        "legalArea": "Legal Area"
+      },
+      "placeholders": {
+        "name": "Your full name",
+        "email": "example@email.com",
+        "phone": "+1 555 555 5555",
+        "subject": "Topic of consultation",
+        "message": "You can write your questions or requests for information regarding your legal situation here...",
+        "legalAreaDefault": "Other"
+      },
+      "button": {
+        "sendMessage": "Send Message",
+        "sending": "Sending..."
+      },
+      "toast": {
+        "missingTitle": "Missing Information",
+        "missingDescription": "Please fill out the required fields.",
+        "successTitle": "Your message has been sent.",
+        "successDescription": "I will get back to you as soon as possible. Thank you.",
+        "errorTitle": "Error",
+        "errorDescription": "Message could not be sent."
+      },
+      "privacyNotice": "All information you submit is protected under privacy regulations. Your personal data is securely stored."
+    },
+    "processSteps": {
+      "heading": "How We Work",
+      "description": "We provide transparent and clear guidance at every step. You will know what to expect throughout the entire process.",
+      "steps": [
+        {
+          "step": "1",
+          "title": "Contact",
+          "description": "Fill out the form or call directly"
+        },
+        {
+          "step": "2",
+          "title": "Evaluation",
+          "description": "I review your situation and get back to you"
+        },
+        {
+          "step": "3",
+          "title": "Consultation Meeting",
+          "description": "Schedule your initial consultation"
+        },
+        {
+          "step": "4",
+          "title": "Solution & Guidance",
+          "description": "I provide clear and reliable guidance regarding the legal process"
+        }
+      ],
+      "infoCard": {
+        "title": "Information & Guidance",
+        "description": "We carefully assess your situation and provide clear, trustworthy guidance. You will know what actions to take at every step."
+      }
+    },
+    "map": {
+      "title": "My Office Location",
+      "subtitle": "I'm waiting for you in my easily accessible office in the heart of Ankara",
+      "cta": {
+        "label": "View on Map"
+      }
+    },
+    "cta": {
+      "title": "Need Fast Information?",
+      "subtitle": "You can contact me directly for information in cases of detention, arrest, or emergency. I provide accurate and clear guidance at every stage of the process.",
+      "cta1": {
+        "label": "Call Now"
+      },
+      "cta2": {
+        "label": "WhatsApp - Get Information"
       }
     }
   }

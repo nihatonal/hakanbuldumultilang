@@ -6,9 +6,17 @@ import { motion } from 'framer-motion'
 import { fadeUp, containerStagger } from '@/lib/animations'
 import { useTranslations } from 'next-intl'
 
+type Step = {
+    step: string
+    title: string
+    description: string
+}
+
 const ProcessSteps = () => {
     const t = useTranslations('contact.processSteps')
-    const steps = [] = t.raw('steps');
+
+    // t.raw('steps') -> unknown döner, bunu Step[] olarak cast ediyoruz
+    const steps = t.raw('steps') as Step[]
 
     return (
         <motion.div
@@ -25,7 +33,7 @@ const ProcessSteps = () => {
             </motion.div>
 
             <div className="space-y-6">
-                {steps.map((step: any, index: number) => (
+                {steps.map((step, index) => (
                     <motion.div key={index} variants={fadeUp}>
                         <Card className="card-elegant">
                             <div className="flex items-start space-x-4">
@@ -52,7 +60,7 @@ const ProcessSteps = () => {
                             <h3 className="font-display text-lg font-semibold text-primary mb-2">
                                 {t("infoCard.title")}
                             </h3>
-                            <p className="text-muted-foreground text-sm"> {t("infoCard.description")}</p>
+                            <p className="text-muted-foreground text-sm">{t("infoCard.description")}</p>
                         </div>
                     </div>
                 </Card>

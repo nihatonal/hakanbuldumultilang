@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function MaintenancePage() {
     return (
-        <main className="min-h-screen w-full grid place-items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-6">
+        <main className="min-h-screen w-full grid place-items-center bg-gradient-to-br from-slate-100 via-slate-500 to-slate-800 px-6">
             <div className="max-w-xl w-full text-center">
                 {/* Image */}
                 <div className="mb-8 flex justify-center">

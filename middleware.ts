@@ -24,6 +24,11 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL("/maintenance", request.url));
   }
 }
+export const config = {
+  matcher: [
+    "/((?!_next|favicon.ico|manifest.json|icons|robots.txt|sitemap.xml|pages-sitemap.xml|blog-sitemap.xml|services-sitemap.xml|images|fonts|bravix.png|studio|api).*)",
+  ],
+};
 
 // import createMiddleware from "next-intl/middleware";
 // import { routing } from "./i18n/routing";

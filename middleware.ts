@@ -11,7 +11,10 @@ export function middleware(request: NextRequest) {
     pathname === "/favicon.ico" ||
     pathname === "/manifest.json" ||
     pathname === "/robots.txt" ||
-    pathname === "/sitemap.xml"
+    pathname === "/sitemap.xml" ||
+    pathname.endsWith(".png") ||
+    pathname.endsWith(".jpg") ||
+    pathname.endsWith(".svg")
   ) {
     return;
   }

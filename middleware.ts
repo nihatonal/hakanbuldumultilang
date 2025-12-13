@@ -1,15 +1,29 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const isMaintenance = process.env.MAINTENANCE_MODE === 'true'
+  const { pathname } = request.nextUrl;
+  const isMaintenance = process.env.MAINTENANCE_MODE === "true";
+
+  // ⛔ ZORUNLU BYPASS LİSTESİ
+  if (
+    pathname.startsWith("/_next") ||
+    pathname === "/favicon.ico" ||
+    pathname === "/manifest.json" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml"
+  ) {
+    return;
+  }
+
+  if (pathname === "/maintenance") {
+    return;
+  }
 
   if (isMaintenance) {
-    return NextResponse.rewrite(new URL('/maintenance', request.url))
+    return NextResponse.rewrite(new URL("/maintenance", request.url));
   }
 }
-
-
 
 // import createMiddleware from "next-intl/middleware";
 // import { routing } from "./i18n/routing";

@@ -1,5 +1,4 @@
-// lib/jsonld.ts
-export function homeJsonLd(locale: "tr" | "en" | "ru") {
+export function homeJsonLd(locale?: string) {
   const siteUrl = "https://www.hakanbuldu.com";
 
   const translations = {
@@ -20,18 +19,23 @@ export function homeJsonLd(locale: "tr" | "en" | "ru") {
     },
   };
 
+  const safeLocale: keyof typeof translations =
+    locale && locale in translations
+      ? (locale as keyof typeof translations)
+      : "tr";
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
-        name: translations[locale].websiteName,
-        url: `${siteUrl}/${locale}`,
-        description: translations[locale].description,
-        inLanguage: locale,
+        name: translations[safeLocale].websiteName,
+        url: `${siteUrl}/${safeLocale}`,
+        description: translations[safeLocale].description,
+        inLanguage: safeLocale,
         potentialAction: {
           "@type": "SearchAction",
-          target: `${siteUrl}/${locale}/search?q={search_term_string}`,
+          target: `${siteUrl}/${safeLocale}/search?q={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
       },

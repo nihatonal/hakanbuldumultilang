@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useTransition } from 'react';
+import React from 'react';
 import { Badge } from '../ui/badge';
 import { motion } from 'framer-motion';
 import { fadeUp, containerStagger } from '@/lib/animations';

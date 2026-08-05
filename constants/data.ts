@@ -1,27 +1,68 @@
-type MenuItem = { path: string; label: string };
-type HeaderData = { [locale: string]: MenuItem[] };
+type MenuItem = {
+  path: string;
+  label: string;
+};
+
+type HeaderData = {
+  [locale: string]: MenuItem[];
+};
 
 export const headerData: HeaderData = {
   tr: [
-    { path: "/tr", label: "Ana Sayfa" },
-    { path: "/hakkinda", label: "Hakkında" },
-    { path: "/calisma-alanlari", label: "Çalışma Alanları" },
-    { path: "/blog", label: "Blog" },
-    { path: "/iletisim", label: "İletişim" },
+    {
+      path: "/tr",
+      label: "Ana Sayfa",
+    },
+    {
+      path: "/tr/blog",
+      label: "Tüm Yazılar",
+    },
+    {
+      path: "/tr#categories",
+      label: "Kategoriler",
+    },
+    {
+      path: "/tr#faq",
+      label: "Sık Sorulan Sorular",
+    },
   ],
+
   en: [
-    { path: "/en", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
-    { path: "/blog", label: "Blog" },
-    { path: "/contact", label: "Contact" },
+    {
+      path: "/tr",
+      label: "Ana Sayfa",
+    },
+    {
+      path: "/tr/blog",
+      label: "Tüm Yazılar",
+    },
+    {
+      path: "/tr#categories",
+      label: "Kategoriler",
+    },
+    {
+      path: "/tr#faq",
+      label: "Sık Sorulan Sorular",
+    },
   ],
+
   ru: [
-    { path: "/tr", label: "Ana Sayfa" },
-    { path: "/hakkinda", label: "Hakkında" },
-    { path: "/calisma-alanlari", label: "Çalışma Alanları" },
-    { path: "/blog", label: "Blog" },
-    { path: "/iletisim", label: "İletişim" },
+    {
+      path: "/tr",
+      label: "Ana Sayfa",
+    },
+    {
+      path: "/tr/blog",
+      label: "Tüm Yazılar",
+    },
+    {
+      path: "/tr#categories",
+      label: "Kategoriler",
+    },
+    {
+      path: "/tr#faq",
+      label: "Sık Sorulan Sorular",
+    },
   ],
 };
 

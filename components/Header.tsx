@@ -1,32 +1,32 @@
-'use client'
-import Link from '@/node_modules/next/link'
-import React from 'react'
-import Container from './Container'
-import HeaderMenu from './HeaderMenu'
-// import LanguageSwitcher from './LanguageSwitcher'
-import Logo from './Logo'
-import MobileMenu from './MobileMenu'
-import { Button } from './ui/button'
-import { useTranslations } from 'next-intl';
+"use client";
 
-const Header = () => {
-  const t = useTranslations("common")
+import { Mail } from "lucide-react";
+
+import Container from "./Container";
+import HeaderMenu from "./HeaderMenu";
+import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
+import { Button } from "./ui/button";
+
+export default function Header() {
   return (
-    <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
-      <Container className="flex items-center justify-between text-lightColor">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
+      <Container className="flex min-h-16 items-center justify-between gap-6">
         <Logo />
+
         <HeaderMenu />
-        <div className="flex items-center gap-4">
-          <Button asChild className="btn-hero hidden sm:flex">
-            <Link href="/iletisim">{t("headerBtn")}</Link>
+
+        <div className="flex items-center gap-3">
+          <Button
+            asChild
+            className="hidden rounded-xl bg-primary text-primary-foreground hover:bg-primary-light sm:inline-flex"
+          >
+            <a href="tel:+905305610034">İletişime Geç</a>
           </Button>
-          {/* <LanguageSwitcher /> */}
+
           <MobileMenu />
         </div>
-
       </Container>
     </header>
-  )
+  );
 }
-
-export default Header

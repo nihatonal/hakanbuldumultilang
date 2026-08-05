@@ -61,7 +61,7 @@ export default async function FaqSection() {
         {JSON.stringify(faqJsonLd)}
       </Script>
 
-      <section id="faq" className="section-padding scroll-mt-24 bg-background">
+      <section id="faq" className="section-padding scroll-mt-12 bg-background">
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             {/* Başlık */}

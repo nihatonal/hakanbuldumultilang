@@ -68,7 +68,7 @@ export default async function BlogCategories() {
   }
 
   return (
-    <section id="categories" className="section-padding bg-page-background">
+    <section id="categories" className="section-padding bg-page-background scroll-mt-12">
       <Container>
         {/* Section header */}
         <div className="mb-10 max-w-3xl md:mb-12">

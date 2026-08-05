@@ -17,6 +17,16 @@ export const blogCategoryType = defineType({
       options: {
         source: "title",
       },
-    })
+    }),
+    defineField({
+      name: "description",
+      title: "Kısa Açıklama",
+      type: "text",
+      rows: 3,
+      validation: (Rule) =>
+        Rule.max(180).warning(
+          "Kategori açıklaması 180 karakteri geçmemelidir.",
+        ),
+    }),
   ],
 });

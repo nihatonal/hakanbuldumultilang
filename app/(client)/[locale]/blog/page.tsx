@@ -8,12 +8,16 @@ import { buildI18nCanonical } from "@/lib/seo";
 
 interface BlogPageProps {
   params: Promise<{ locale: "tr" | "en" }>;
-  searchParams?: { category?: string };
+  searchParams: Promise<{
+    category?: string | string[];
+    search?: string | string[];
+  }>;
 }
 
-
 const siteUrl = "https://www.hakanbuldu.com";
-export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
   const { locale } = await params;
 
   return {
@@ -59,11 +63,20 @@ const jsonLd = (locale: "tr" | "en") => ({
   },
 });
 
-
-export default async function BlogPage({ params, searchParams }: BlogPageProps) {
+export default async function BlogPage({
+  params,
+  searchParams,
+}: BlogPageProps) {
   const { locale } = await params;
-  const resolvedSearchParams = await searchParams;   // 🔥 ÖNEMLİ
-  const selectedCategory = resolvedSearchParams?.category || "";
+  const resolvedSearchParams = await searchParams;
+
+  const categoryParam = resolvedSearchParams.category;
+  const searchParam = resolvedSearchParams.search;
+
+  const selectedCategory =
+    typeof categoryParam === "string" ? categoryParam : "";
+
+  const initialSearch = typeof searchParam === "string" ? searchParam : "";
 
   const blogs = await getAllBlogs();
   const latestBlogs = await getLatestBlogs();
@@ -72,15 +85,16 @@ export default async function BlogPage({ params, searchParams }: BlogPageProps) 
   return (
     <>
       <Script type="application/ld+json" id="blog-jsonld">
-      {JSON.stringify(jsonLd(locale))}
+        {JSON.stringify(jsonLd(locale))}
       </Script>
 
       <BlogPageClient
         blogs={blogs}
         latestBlogs={latestBlogs}
         mostViewed={mostViewed}
-        initialCategory={selectedCategory} // client component'e gönder
+        initialCategory={selectedCategory}
+        initialSearch={initialSearch}
       />
     </>
   );
-};
+}

@@ -65,7 +65,7 @@ export default function Page() {
 
                     <p>
                         Haklarınızı kullanmak veya sorularınızı iletmek için bize{' '}
-                        <a href="mailto:info@hakanbuldu.com" className="text-blue-600 underline">info@avhakanbuldu.com</a>{' '}
+                        <a href="mailto:info@hakanbuldu.com" className="text-blue-600 underline">info@hakanbuldu.com</a>{' '}
                         adresinden ulaşabilirsiniz.
                     </p>
                 </article>

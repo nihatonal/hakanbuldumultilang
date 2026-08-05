@@ -55,6 +55,13 @@ export const blogType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "featured",
+      title: "Öne Çıkan Yazı",
+      type: "boolean",
+      description: "Toggle to Featured on or off",
+      initialValue: false,
+    }),
+    defineField({
       name: "readingTime",
       title: "Reading Time (minutes)",
       type: "number",

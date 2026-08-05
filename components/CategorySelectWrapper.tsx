@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import CategorySelect from "./CategorySelect ";
+import CategorySelect from "./CategorySelect";
 
 const CategorySelectWrapper = (props) => {
     const [mounted, setMounted] = useState(false);

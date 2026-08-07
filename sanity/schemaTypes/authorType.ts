@@ -1,4 +1,4 @@
-import { UserIcon } from "@sanity/icons";
+import {UsersIcon} from '@sanity/icons/Users'
 import {
   defineArrayMember,
   defineField,
@@ -9,7 +9,7 @@ export const authorType = defineType({
   name: "author",
   title: "Author",
   type: "document",
-  icon: UserIcon,
+  icon: UsersIcon,
 
   fields: [
     defineField({

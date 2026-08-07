@@ -8,12 +8,53 @@ import { notFound } from "next/navigation";
 
 const siteUrl = "https://www.hakanbuldu.com";
 export const metadata: Metadata = {
-  title: "Hakan Buldu | Ceza, İdare, İş ve Aile Hukukunda Uzman",
+  title: "Hakan Buldu | Ceza, İdare, İş, Medeni ve Tazminat Hukuku",
+
   description:
-    "15+ yıllık deneyim, 500+ dava ve %95 başarı oranıyla Hakan Buldu; ceza, idare, iş ve aile hukuku alanlarında güvenilir ve etkili hukuki destek sunar.",
+    "Hakan Buldu'nun hukuk blogunda ceza hukuku, idare hukuku, iş hukuku, medeni hukuk ve tazminat hukuku alanlarında güncel hukuki gelişmeleri, rehber niteliğindeki makaleleri ve güvenilir bilgilendirme içeriklerini keşfedin.",
+
   alternates: {
-    canonical: `${siteUrl}/`
-  }
+    canonical: `${siteUrl}/`,
+  },
+
+  keywords: [
+    "Hakan Buldu",
+    "hukuk blogu",
+    "ceza hukuku",
+    "idare hukuku",
+    "iş hukuku",
+    "medeni hukuk",
+    "tazminat hukuku",
+    "hukuki makale",
+    "hukuki bilgilendirme",
+    "avukat blogu",
+  ],
+
+  openGraph: {
+    title: "Hakan Buldu | Hukuk Blogu",
+    description:
+      "Ceza, idare, iş, medeni ve tazminat hukuku alanlarında güncel hukuki makaleler ve güvenilir bilgilendirme içerikleri.",
+    url: siteUrl,
+    siteName: "Hakan Buldu",
+    locale: "tr_TR",
+    type: "website",
+    images: [
+      {
+        url: `${siteUrl}/images/og-home.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Hakan Buldu Hukuk Blogu",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Hakan Buldu | Hukuk Blogu",
+    description:
+      "Ceza, idare, iş, medeni ve tazminat hukuku alanlarında güncel hukuki içerikler.",
+    images: [`${siteUrl}/images/og-home.jpg`],
+  },
 };
 
 export default async function LocaleLayout({
@@ -21,7 +62,7 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
 

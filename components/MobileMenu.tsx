@@ -79,9 +79,8 @@ export default function MobileMenu() {
                   ))}
                 </nav>
                 <Button asChild className="btn-hero">
-                  <Link href={t("consultation.path")}>
-                    {t("consultation.label")}
-                  </Link>
+                 <a href="tel:+905305610034">İletişime Geç
+                  </a>
                 </Button>
                 {/* Alt İletişim Bilgileri */}
                 <div className="border-t border-border pt-6 mt-6">

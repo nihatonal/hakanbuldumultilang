@@ -1,9 +1,4 @@
-import {
-  ArrowUpRight,
-  Mail,
-  Phone,
-  Scale,
-} from "lucide-react";
+import { ArrowUpRight, Mail, Phone, Scale } from "lucide-react";
 
 import Container from "@/components/Container";
 import { client } from "@/sanity/lib/client";
@@ -31,12 +26,9 @@ interface ContactInformation {
   phone?: string;
 }
 
-async function getContactInformation():
-  Promise<ContactInformation | null> {
+async function getContactInformation(): Promise<ContactInformation | null> {
   try {
-    return await client.fetch<ContactInformation | null>(
-      CONTACT_QUERY,
-    );
+    return await client.fetch<ContactInformation | null>(CONTACT_QUERY);
   } catch (error) {
     console.error("İletişim bilgileri alınamadı:", error);
     return null;
@@ -50,8 +42,7 @@ export default async function ContactCta() {
     return null;
   }
 
-  const normalizedPhone =
-    contact.phone?.replace(/[^\d+]/g, "") ?? "";
+  const normalizedPhone = contact.phone?.replace(/[^\d+]/g, "") ?? "";
 
   return (
     <section className="section-padding bg-page-background">
@@ -70,10 +61,7 @@ export default async function ContactCta() {
           <div className="relative grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3">
-                <Scale
-                  aria-hidden="true"
-                  className="h-5 w-5 text-accent"
-                />
+                <Scale aria-hidden="true" className="h-5 w-5 text-accent" />
 
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">
                   İletişim
@@ -81,14 +69,14 @@ export default async function ContactCta() {
               </div>
 
               <h2 className="mt-5 text-3xl font-semibold tracking-[-0.025em] text-white md:text-4xl lg:text-5xl">
-                Hukuki bir konuda bilgiye mi ihtiyacınız var?
+                Sitede yer alan içeriklerle ilgili bir konuda bilgiye mi
+                ihtiyacınız var?
               </h2>
 
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/65">
-                İncelediğiniz içerikler genel bilgilendirme amacı
-                taşımaktadır. Somut durumunuza ilişkin değerlendirme
-                ihtiyacınız varsa iletişim kanalları üzerinden
-                ulaşabilirsiniz.
+                İncelediğiniz içerikler genel bilgilendirme amacı taşımaktadır.
+                Somut durumunuza ilişkin değerlendirme ihtiyacınız varsa avukat
+                veya hukuk danışmanına başvurmanız gerekmektedir.
               </p>
             </div>
 
@@ -98,11 +86,7 @@ export default async function ContactCta() {
                   href={`tel:${normalizedPhone}`}
                   className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-accent px-6 py-4 font-semibold text-accent-foreground transition hover:bg-accent-light"
                 >
-                  <Phone
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  />
-
+                  <Phone aria-hidden="true" className="h-5 w-5" />
                   Telefonla Ulaşın
                 </a>
               )}
@@ -112,13 +96,8 @@ export default async function ContactCta() {
                   href={`mailto:${contact.email}`}
                   className="group inline-flex min-h-14 items-center justify-center gap-3 rounded-xl border border-white/20 px-6 py-4 font-semibold text-white transition hover:border-white/35 hover:bg-white/10"
                 >
-                  <Mail
-                    aria-hidden="true"
-                    className="h-5 w-5"
-                  />
-
+                  <Mail aria-hidden="true" className="h-5 w-5" />
                   E-posta Gönder
-
                   <ArrowUpRight
                     aria-hidden="true"
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

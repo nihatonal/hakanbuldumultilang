@@ -1,47 +1,101 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-const SingleBlogContent = ({ slug, count }: { slug: string, count: number }) => {
-    const [viewCount, setViewCount] = useState<number | null>(count);
-    const hasIncremented = useRef(false); // 👈 sadece increment için
+interface SingleBlogContentProps {
+  slug: string;
+  count: number;
+}
 
-    useEffect(() => {
-        const updateAndFetchView = async () => {
-            try {
-                if (!hasIncremented.current) {
-                    hasIncremented.current = true;
+export default function SingleBlogContent({
+  slug,
+  count,
+}: SingleBlogContentProps) {
+  const [viewCount, setViewCount] =
+    useState(count);
 
-                    // Paralel fetch işlemleri
-                    const [_, viewRes] = await Promise.all([
-                        fetch(`/api/increment-view?slug=${slug}`),
-                        fetch(`/api/view-count?slug=${slug}`)
-                    ]);
+  const hasIncremented =
+    useRef(false);
 
-                    const data = await viewRes.json();
-                    setViewCount(data.viewCount);
-                } else {
-                    // Sadece viewCount çek
-                    const res = await fetch(`/api/view-count?slug=${slug}`);
-                    const data = await res.json();
-                    setViewCount(data.viewCount);
-                }
-            } catch (error) {
-                console.error("View count error:", error);
-            }
-        };
+  useEffect(() => {
+    if (hasIncremented.current) {
+      return;
+    }
 
-        updateAndFetchView();
-    }, [slug]);
+    hasIncremented.current = true;
 
+    const incrementView = async () => {
+      try {
+        const incrementResponse =
+          await fetch(
+            `/api/increment-view?slug=${encodeURIComponent(
+              slug,
+            )}`,
+          );
 
-    if (viewCount === null) return null;
+        if (!incrementResponse.ok) {
+          throw new Error(
+            `Increment failed: ${incrementResponse.status}`,
+          );
+        }
 
-    return (
-        <span>
-            {viewCount}
-        </span>
-    );
-};
+        /*
+         * Increment endpoint'i yeni viewCount'u
+         * döndürüyorsa doğrudan kullan.
+         */
+        const incrementData =
+          await incrementResponse.json();
 
-export default SingleBlogContent;
+        if (
+          typeof incrementData?.viewCount ===
+          "number"
+        ) {
+          setViewCount(
+            incrementData.viewCount,
+          );
+
+          return;
+        }
+
+        /*
+         * Endpoint henüz yeni değeri dönmüyorsa
+         * fallback olarak tekrar oku.
+         */
+        const viewResponse = await fetch(
+          `/api/view-count?slug=${encodeURIComponent(
+            slug,
+          )}`,
+        );
+
+        if (!viewResponse.ok) {
+          return;
+        }
+
+        const viewData =
+          await viewResponse.json();
+
+        if (
+          typeof viewData?.viewCount ===
+          "number"
+        ) {
+          setViewCount(
+            viewData.viewCount,
+          );
+        }
+      } catch (error) {
+        console.error(
+          "View count error:",
+          error,
+        );
+      }
+    };
+
+    incrementView();
+  }, [slug]);
+
+  return <span>{viewCount}</span>;
+}

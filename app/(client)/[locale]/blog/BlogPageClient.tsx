@@ -14,6 +14,7 @@ import "dayjs/locale/tr";
 import NotReadyBlog from "../../../../assets/images/not-ready-blog-main-image.webp";
 import CategorySelectWrapper from "@/components/CategorySelectWrapper";
 import { blockContentToText } from "@/lib/blockContentToText";
+import { useLocale } from "next-intl";
 
 const BLOG_QUERY = `*[_type=="blog"] | order(publishedAt desc){
     _id,
@@ -60,7 +61,7 @@ const MOST_VIEWED_QUERY = `*[_type == "blog" && defined(viewCount)]
 }
 }`;
 
-interface BlogCategory {
+export interface BlogCategory {
   _id: string;
   title: string;
   slug: {
@@ -68,7 +69,7 @@ interface BlogCategory {
   };
 }
 
-interface Blog {
+export interface Blog {
   _id: string;
   title: string;
   body: Array<{
@@ -108,6 +109,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
 }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
 
@@ -230,7 +232,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
             {filteredBlogs.map((blog) => (
               <Link
                 key={blog._id}
-                href={`/blog/${blog.slug.current}`}
+                href={`/${locale}/blog/${blog.slug.current}`}
                 className={`relative flex flex-col items-start p-0 bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1
                                 md:max-h-[300px]`}
               >
@@ -239,13 +241,19 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                   <Image
                     src={
                       blog.mainImage
-                        ? urlFor(blog.mainImage).url()
+                        ? urlFor(blog.mainImage)
+                            .width(800)
+                            .height(450)
+                            .fit("crop")
+                            .quality(80)
+                            .auto("format")
+                            .url()
                         : NotReadyBlog
                     }
                     alt={blog.title}
                     fill
-                    sizes="(max-width:768px) 100vw, (max-width:1280px) 50vw, 33vw"
-                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    unoptimized={Boolean(blog.mainImage)}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
 
@@ -304,7 +312,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                 {latestBlogs.map((blog) => (
                   <li key={blog._id}>
                     <Link
-                      href={`/blog/${blog.slug.current}`}
+                      href={`/${locale}/blog/${blog.slug.current}`}
                       className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                     >
                       {/* Thumbnail */}
@@ -312,14 +320,21 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                         <Image
                           src={
                             blog.mainImage
-                              ? urlFor(blog.mainImage).url()
+                              ? urlFor(blog.mainImage)
+                                  .width(96)
+                                  .height(96)
+                                  .fit("crop")
+                                  .quality(75)
+                                  .auto("format")
+                                  .url()
                               : NotReadyBlog
                           }
                           alt={blog.title}
                           width={48}
                           height={48}
-                          priority
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="48px"
+                          unoptimized={Boolean(blog.mainImage)}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
 
@@ -344,7 +359,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                 {mostViewed.map((blog) => (
                   <li key={blog._id}>
                     <Link
-                      href={`/blog/${blog.slug.current}`}
+                      href={`/${locale}/blog/${blog.slug.current}`}
                       className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                     >
                       {/* Thumbnail */}
@@ -352,14 +367,21 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                         <Image
                           src={
                             blog.mainImage
-                              ? urlFor(blog.mainImage).url()
+                              ? urlFor(blog.mainImage)
+                                  .width(96)
+                                  .height(96)
+                                  .fit("crop")
+                                  .quality(75)
+                                  .auto("format")
+                                  .url()
                               : NotReadyBlog
                           }
                           alt={blog.title}
                           width={48}
                           height={48}
-                          priority
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="48px"
+                          unoptimized={Boolean(blog.mainImage)}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
 
@@ -408,7 +430,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                   {latestBlogs.map((blog) => (
                     <li key={blog._id}>
                       <Link
-                        href={`/blog/${blog.slug.current}`}
+                        href={`/${locale}/blog/${blog.slug.current}`}
                         className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                       >
                         {/* Thumbnail */}
@@ -416,13 +438,21 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                           <Image
                             src={
                               blog.mainImage
-                                ? urlFor(blog.mainImage).url()
+                                ? urlFor(blog.mainImage)
+                                    .width(96)
+                                    .height(96)
+                                    .fit("crop")
+                                    .quality(75)
+                                    .auto("format")
+                                    .url()
                                 : NotReadyBlog
                             }
                             alt={blog.title}
                             width={48}
                             height={48}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="48px"
+                            unoptimized={Boolean(blog.mainImage)}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
 
@@ -447,7 +477,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                   {mostViewed.map((blog) => (
                     <li key={blog._id}>
                       <Link
-                        href={`/blog/${blog.slug.current}`}
+                        href={`/${locale}/blog/${blog.slug.current}`}
                         className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                       >
                         {/* Thumbnail */}
@@ -455,13 +485,21 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                           <Image
                             src={
                               blog.mainImage
-                                ? urlFor(blog.mainImage).url()
+                                ? urlFor(blog.mainImage)
+                                    .width(96)
+                                    .height(96)
+                                    .fit("crop")
+                                    .quality(75)
+                                    .auto("format")
+                                    .url()
                                 : NotReadyBlog
                             }
                             alt={blog.title}
                             width={48}
                             height={48}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="48px"
+                            unoptimized={Boolean(blog.mainImage)}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
 

@@ -1,13 +1,22 @@
-// app/blog/page.tsx
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Script from "next/script";
-import { getAllBlogs } from "@/sanity/queries";
-import { getLatestBlogs, getMostViewedBlogs } from "@/sanity/queries/index";
-import BlogPageClient from "./BlogPageClient";
+
 import { buildI18nCanonical } from "@/lib/seo";
+import {
+  getAllBlogs,
+  getLatestBlogs,
+  getMostViewedBlogs,
+} from "@/sanity/queries";
+
+import BlogPageClient, {
+  type Blog,
+} from "./BlogPageClient";
 
 interface BlogPageProps {
-  params: Promise<{ locale: "tr" | "en" }>;
+  params: Promise<{
+    locale: "tr" | "en";
+  }>;
+
   searchParams: Promise<{
     category?: string | string[];
     search?: string | string[];
@@ -15,6 +24,7 @@ interface BlogPageProps {
 }
 
 const siteUrl = "https://www.hakanbuldu.com";
+
 export async function generateMetadata({
   params,
 }: BlogPageProps): Promise<Metadata> {
@@ -23,45 +33,69 @@ export async function generateMetadata({
   return {
     title:
       locale === "tr"
-        ? "Hukuk Blogu - Hakan Buldu | Güncel Hukuki Bilgiler"
-        : "Legal Blog - Hakan Buldu | Updated Legal Insights",
+        ? "Hukuk Blogu | Hakan Buldu"
+        : "Legal Blog | Hakan Buldu",
 
     description:
       locale === "tr"
-        ? "Ceza, idare, iş ve aile hukuku konularında güncel makaleler ve bilgilendirici yazılar."
-        : "Articles on criminal, administrative, labor, and family law with updated legal insights.",
+        ? "Ceza hukuku, idare hukuku, iş hukuku, medeni hukuk ve diğer hukuk alanlarında güncel makaleler, rehberler ve hukuki bilgilendirme içerikleri."
+        : "Legal articles, guides and informative content covering criminal, administrative, labor and civil law.",
 
-    ...buildI18nCanonical(locale, {
-      tr: "/blog",
-      en: "/blog",
-    }),
+    ...buildI18nCanonical(locale, "/blog"),
 
     robots: {
       index: true,
       follow: true,
     },
+
+    openGraph: {
+      title:
+        locale === "tr"
+          ? "Hukuk Blogu | Hakan Buldu"
+          : "Legal Blog | Hakan Buldu",
+
+      description:
+        locale === "tr"
+          ? "Güncel hukuki makaleler, rehberler ve bilgilendirme içerikleri."
+          : "Updated legal articles, guides and informative content.",
+
+      url: `${siteUrl}/${locale}/blog`,
+      siteName: "Hakan Buldu",
+      type: "website",
+      locale: locale === "tr" ? "tr_TR" : "en_US",
+    },
   };
 }
 
-const jsonLd = (locale: "tr" | "en") => ({
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: locale === "tr" ? "Hukuk Blogu" : "Legal Blog",
-  url: `${siteUrl}/${locale}/blog`,
-  description:
-    locale === "tr"
-      ? "Ceza, idare, iş ve aile hukuku alanlarında güncel bilgiler ve hukuki rehberler içeren blog."
-      : "A blog offering updated legal information and insights.",
-  creator: {
-    "@type": "Person",
-    name: "Hakan Buldu",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Hakan Buldu",
-    url: siteUrl,
-  },
-});
+function createJsonLd(locale: "tr" | "en") {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+
+    name:
+      locale === "tr"
+        ? "Hakan Buldu Hukuk Blogu"
+        : "Hakan Buldu Legal Blog",
+
+    url: `${siteUrl}/${locale}/blog`,
+
+    description:
+      locale === "tr"
+        ? "Ceza, idare, iş, medeni ve diğer hukuk alanlarında güncel hukuki bilgiler ve rehberler."
+        : "Legal information, articles and guides.",
+
+    author: {
+      "@type": "Person",
+      name: "Hakan Buldu",
+    },
+
+    publisher: {
+      "@type": "Person",
+      name: "Hakan Buldu",
+      url: siteUrl,
+    },
+  };
+}
 
 export default async function BlogPage({
   params,
@@ -70,22 +104,55 @@ export default async function BlogPage({
   const { locale } = await params;
   const resolvedSearchParams = await searchParams;
 
-  const categoryParam = resolvedSearchParams.category;
-  const searchParam = resolvedSearchParams.search;
+  const categoryParam =
+    resolvedSearchParams.category;
+
+  const searchParam =
+    resolvedSearchParams.search;
 
   const selectedCategory =
-    typeof categoryParam === "string" ? categoryParam : "";
+    typeof categoryParam === "string"
+      ? categoryParam
+      : "";
 
-  const initialSearch = typeof searchParam === "string" ? searchParam : "";
+  const initialSearch =
+    typeof searchParam === "string"
+      ? searchParam
+      : "";
 
-  const blogs = await getAllBlogs();
-  const latestBlogs = await getLatestBlogs();
-  const mostViewed = await getMostViewedBlogs();
+  /*
+   * Sorguları ardışık yapmak yerine paralel çalıştırıyoruz.
+   */
+  const [
+    blogsResult,
+    latestBlogsResult,
+    mostViewedResult,
+  ] = await Promise.all([
+    getAllBlogs(),
+    getLatestBlogs(),
+    getMostViewedBlogs(),
+  ]);
+
+  /*
+   * Query helper'larının mevcut dönüş tipi {}
+   * olarak infer edildiği için burada Blog[] tipini
+   * açıkça tanımlıyoruz.
+   */
+  const blogs = blogsResult as Blog[];
+  const latestBlogs =
+    latestBlogsResult as Blog[];
+  const mostViewed =
+    mostViewedResult as Blog[];
 
   return (
     <>
-      <Script type="application/ld+json" id="blog-jsonld">
-        {JSON.stringify(jsonLd(locale))}
+      <Script
+        id="blog-jsonld"
+        type="application/ld+json"
+      >
+        {JSON.stringify(
+          createJsonLd(locale),
+        )}
       </Script>
 
       <BlogPageClient

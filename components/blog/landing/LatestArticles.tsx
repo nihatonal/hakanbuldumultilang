@@ -60,6 +60,7 @@ interface LatestBlog {
       current: string;
     };
   }>;
+  locale: "tr" | "en";
 }
 
 async function getLatestArticles(): Promise<LatestBlog[]> {
@@ -140,7 +141,8 @@ export default async function LatestArticles() {
               >
                 {/* Image */}
                 <Link
-                  href={`/blog/${article.slug.current}`}
+                  href={`/${article.locale}/blog/${article.slug.current}`}
+                  prefetch={false}
                   aria-label={article.title}
                   className="relative block aspect-video overflow-hidden bg-secondary"
                 >

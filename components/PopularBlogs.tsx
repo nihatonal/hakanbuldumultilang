@@ -112,6 +112,7 @@ const PopularBlogs: React.FC<BlogPageProps> = ({
             <Link
               key={blog._id}
               href={`/blog/${blog.slug.current}`}
+              prefetch={false}
               className="relative flex flex-col items-start p-0 bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               {/* Thumbnail + Categories overlay */}

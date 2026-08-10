@@ -65,6 +65,7 @@ interface FeaturedBlog {
       current: string;
     };
   }>;
+  locale: "tr" | "en";
 }
 
 async function getFeaturedArticle(): Promise<FeaturedBlog | null> {
@@ -133,7 +134,8 @@ export default async function FeaturedArticle() {
         <article className="group grid overflow-hidden rounded-3xl border border-border bg-card shadow-card transition duration-500 hover:shadow-elegant lg:grid-cols-[1.15fr_0.85fr]">
           {/* Image */}
           <Link
-            href={`/blog/${article.slug.current}`}
+            href={`/${article.locale}/blog/${article.slug.current}`}
+            prefetch={false}
             aria-label={article.title}
             className="relative min-h-[300px] overflow-hidden bg-secondary sm:min-h-[400px] lg:min-h-[520px]"
           >

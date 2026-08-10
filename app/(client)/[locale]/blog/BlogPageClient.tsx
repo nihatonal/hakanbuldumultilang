@@ -232,7 +232,9 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
             {filteredBlogs.map((blog) => (
               <Link
                 key={blog._id}
+               
                 href={`/${locale}/blog/${blog.slug.current}`}
+                 prefetch={false}
                 className={`relative flex flex-col items-start p-0 bg-white rounded-xl shadow-sm overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1
                                 md:max-h-[300px]`}
               >
@@ -252,6 +254,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                     }
                     alt={blog.title}
                     fill
+                    
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                     unoptimized={Boolean(blog.mainImage)}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -313,6 +316,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                   <li key={blog._id}>
                     <Link
                       href={`/${locale}/blog/${blog.slug.current}`}
+                      prefetch={false}
                       className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                     >
                       {/* Thumbnail */}
@@ -360,6 +364,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                   <li key={blog._id}>
                     <Link
                       href={`/${locale}/blog/${blog.slug.current}`}
+                      prefetch={false}
                       className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                     >
                       {/* Thumbnail */}
@@ -431,6 +436,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                     <li key={blog._id}>
                       <Link
                         href={`/${locale}/blog/${blog.slug.current}`}
+                        prefetch={false}
                         className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                       >
                         {/* Thumbnail */}
@@ -478,6 +484,7 @@ const BlogPageClient: React.FC<BlogPageProps> = ({
                     <li key={blog._id}>
                       <Link
                         href={`/${locale}/blog/${blog.slug.current}`}
+                        prefetch={false}
                         className="flex items-center gap-3 p-2 rounded-md transition-all duration-300 group hover:bg-primary/5"
                       >
                         {/* Thumbnail */}

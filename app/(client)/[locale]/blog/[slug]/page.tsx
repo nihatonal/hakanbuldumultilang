@@ -1,7 +1,8 @@
+
+
 import Container from "@/components/Container";
 import Title from "@/components/Title";
 import { buildI18nCanonical } from "@/lib/seo";
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import {
   getBlogCategories,
@@ -31,6 +32,8 @@ import { cache } from "react";
 
 import NotReadyBlog from "../../../../../assets/images/not-ready-blog-main-image.webp";
 import SingleBlogContent from "./SingleBlogContent";
+
+export const dynamic = "force-dynamic";
 
 type Locale = "tr" | "en";
 
@@ -831,39 +834,3 @@ function SidebarBlogList({
   );
 }
 
-/**
- * Static blog paths
- */
-export async function generateStaticParams() {
-  const blogs = await client.fetch<
-    Array<{
-      slug?: {
-        current?: string;
-      };
-    }>
-  >(`
-    *[
-      _type == "blog" &&
-      !(_id in path("drafts.**")) &&
-      defined(slug.current)
-    ]{
-      slug
-    }
-  `);
-
-  return blogs
-    .filter(
-      (
-        blog,
-      ): blog is {
-        slug: {
-          current: string;
-        };
-      } =>
-        typeof blog.slug?.current ===
-        "string",
-    )
-    .map((blog) => ({
-      slug: blog.slug.current,
-    }));
-}

@@ -1,4 +1,4 @@
-import {ImageIcon} from '@sanity/icons/Image'
+import { ImageIcon } from "@sanity/icons/Image";
 import { defineArrayMember, defineType } from "sanity";
 
 export const blockContentType = defineType({
@@ -16,6 +16,7 @@ export const blockContentType = defineType({
         { title: "H2", value: "h2" },
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
+        { title: "Quote", value: "blockquote" },
       ],
 
       lists: [
@@ -73,7 +74,7 @@ export const blockContentType = defineType({
           title: "Alternative Text",
           validation: (Rule) =>
             Rule.required().warning(
-              "SEO ve erişilebilirlik için alternatif metin ekleyin."
+              "SEO ve erişilebilirlik için alternatif metin ekleyin.",
             ),
         },
       ],
